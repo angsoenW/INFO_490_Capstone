@@ -9,6 +9,7 @@ import 'dotenv/config'
 import WebAppAuthProvider from 'msal-node-wrapper'
 
 const authConfig = {
+    // Need .env file
     auth: {
         clientId: process.env.AUTH_CLIENT_ID,
         authority: `https://login.microsoftonline.com/${process.env.AUTH_AUTHORITY}`,

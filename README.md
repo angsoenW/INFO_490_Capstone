@@ -14,8 +14,6 @@ Azure Access
 
 ### Setup
 
-TBD.
-
 ## Building and Deployment
 
 ![Alt text](Project%20Architecture%20Diagram.png/)
