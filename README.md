@@ -9,8 +9,8 @@ How might college students efficiently utilize their existing kitchen ingredient
 The solution will be developed at this repo: https://github.com/angsoenW/INFO_490_Capstone. All member has access to the repo for collaboration purposes. Visual Studio Code is recommended during development.  
 
 ### Prerequisites
-
-TBD.
+MongoDB Access
+Azure Access
 
 ### Setup
 
@@ -18,7 +18,7 @@ TBD.
 
 ## Building and Deployment
 
-![alt text](/Project Architecture Diagram.png)
+![Alt text](Project%20Architecture%20Diagram.png/)
 
 ## Contributing
 
