@@ -18,7 +18,7 @@ TBD.
 
 ## Building and Deployment
 
-TBD.
+![alt text](/Project Architecture Diagram.png)
 
 ## Contributing
 
