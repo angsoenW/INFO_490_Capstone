@@ -6,13 +6,20 @@ How might college students efficiently utilize their existing kitchen ingredient
 
 ## Installation
 
-The solution will be developed at this repo: https://github.com/angsoenW/INFO_490_Capstone. All member has access to the repo for collaboration purposes. Visual Studio Code is recommended during development.  
+The solution will be developed at this repo: https://github.com/angsoenW/INFO_490_Capstone. All member has access to the repo for collaboration purposes. Visual Studio Code is recommended during development. 
+Node.js can be downloaded here: https://nodejs.org/en/download/current 
 
 ### Prerequisites
 MongoDB Access
 Azure Access
+Github Access
+Node.js installation
 
 ### Setup
+1. Clone this repo from Github and open it in Visual Studio Code
+2. Go to Terminal -> New Terminal
+3. Type "npm install"
+4. Type "npm start"
 
 ## Building and Deployment
 

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
       params: {
         apiKey: "6b822790baca45e7ae127974d7410016",
-        diet: 'vegetarian',
+        // diet: 'vegetarian',
         includeIngredients: req.query.ingredientsList,
         instructionsRequired: true,
         fillIngredients: true,

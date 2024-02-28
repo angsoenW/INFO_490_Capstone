@@ -2,7 +2,11 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 
 let models = {}
-await mongoose.connect("mongodb+srv://aalexzhang:azhangwebsharer@cluster0.20helcs.mongodb.net/")
+
+console.log('connecting to mongodb')
+await mongoose.connect("mongodb+srv://angsoen:BzwCjknLvhK2MPVr@cluster0.pzn6zqp.mongodb.net/")
+
+console.log('succesffully connected to mongodb!')
 
 let instructionSchema = new mongoose.Schema({
     recipeID: String,

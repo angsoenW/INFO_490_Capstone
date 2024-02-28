@@ -3,17 +3,16 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sessions from 'express-session';
-import 'dotenv/config'
 
 
 import WebAppAuthProvider from 'msal-node-wrapper'
 
 const authConfig = {
     auth: {
-        clientId: "8830b361-a94b-4bcb-9d97-088d68652280",
+        clientId: "8017b637-f037-4234-8f28-14c47c565744",
         authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-        clientSecret: "kB-8Q~VYrcWn1emK3OgqgVj~vEGRvkoJNrL3.c-I",
-        redirectUri: "http://localhost:3000/redirect",
+        clientSecret: "A5Z8Q~VMcbCSEeCn~mmj8GViGCHFRqQO2CZpEb_v",
+        redirectUri: "/redirect",
     },
     system: {
         loggerOptions: {
