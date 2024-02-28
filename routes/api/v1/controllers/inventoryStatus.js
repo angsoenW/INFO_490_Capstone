@@ -29,13 +29,15 @@ router.post('/', async (req, res) => {
         }
 
         let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
+        const ingredients = req.query.ingredient.split(',').map(ingredient => ingredient.trim());
 
         if(inventory) {
-            if(!inventory.contents.includes(req.query.ingredient)) {
-                inventory.contents.push(req.query.ingredient) 
-            }
-        } 
-        else {
+            ingredients.forEach(ingredient => {
+                if (!inventory.contents.includes(ingredient)) {
+                    inventory.contents.push(ingredient);
+                }
+            });
+        } else {
             inventory = await req.models.Inventory.create({
                 username: req.session.account.username,
                 contents: [req.query.ingredient]
@@ -64,9 +66,12 @@ router.delete('/', async (req, res) => {
             const index = inventory.contents.indexOf(req.query.ingredient) 
             if(index !== -1) {
                 inventory.contents.splice(index, 1) 
-                await inventory.save() 
+                await inventory.save()
+                res.status(200).json(inventory) 
+            } else {
+                res.status(204).json(inventory) 
             }
-            res.status(200).json(inventory) 
+            
         } else {
             res.status(404).json({ status: "error", error: "Inventory not found" }) 
         }

@@ -59,14 +59,24 @@ button {
   background-color: #007bff; /* Bootstrap primary color */
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 12px 20px; /* Increased padding for a larger button */
+  border-radius: 8px; /* More pronounced rounded corners */
   cursor: pointer;
-  margin-right: 5px; /* Spacing between buttons */
+  margin: 10px 10px 10px 0; /* Increased spacing around buttons */
+  transition: background-color 0.3s, box-shadow 0.2s; /* Smooth transition for hover and focus */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  font-weight: 500; /* Slightly bolder text */
 }
 
-button:hover {
+button:hover, button:focus {
   background-color: #0056b3; /* Darker shade for hover effect */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow on hover for a "lifting" effect */
+  outline: none; /* Remove outline on focus for cleaner look */
+}
+
+button:active {
+  background-color: #004885; /* Even darker for the active state */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Less pronounced shadow to simulate "pressing" */
 }
 
 /* Style for ingredient preview */

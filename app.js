@@ -9,12 +9,11 @@ import 'dotenv/config'
 import WebAppAuthProvider from 'msal-node-wrapper'
 
 const authConfig = {
-    // Need .env file
     auth: {
-        clientId: process.env.AUTH_CLIENT_ID,
-        authority: `https://login.microsoftonline.com/${process.env.AUTH_AUTHORITY}`,
-        clientSecret: process.env.AUTH_CLIENT_SECRET,
-        redirectUri: process.env.AUTH_REDIRECT,
+        clientId: "8830b361-a94b-4bcb-9d97-088d68652280",
+        authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
+        clientSecret: "kB-8Q~VYrcWn1emK3OgqgVj~vEGRvkoJNrL3.c-I",
+        redirectUri: "http://localhost:3000/redirect",
     },
     system: {
         loggerOptions: {
@@ -57,7 +56,7 @@ const authProvider = await WebAppAuthProvider.WebAppAuthProvider.initialize(auth
 app.use(authProvider.authenticate());
 
 app.use((req, res, next) =>{
-    console.log("session info:", req.session)
+    //console.log("session info:", req.session)
     next();
 })
 
