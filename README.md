@@ -17,7 +17,7 @@ Node.js installation
 
 ### Setup
 1. Clone this repo from Github and open it in Visual Studio Code
-2. Go to Terminal -> New Terminal
+2. In VS Code, go to Terminal -> New Terminal
 3. Type "npm install"
 4. Type "npm start"
 
