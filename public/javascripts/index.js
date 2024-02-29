@@ -67,6 +67,7 @@ async function displayInstructions() {
     try {
         let response = await fetch("api/v1/recipe", {method: 'GET'});
         let data = await response.json();
+        console.log(data)
         
     }
     catch(e) {
@@ -103,7 +104,7 @@ function displayPreviews(previewJSON) {
                 <li style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     <img src="${recipe.image}" alt="${recipe.title}" style="width: 100px; height: auto; float: left; margin-right: 20px;">
                     <p><strong>${recipe.title}</strong></p>
-                    <button onclick="addInstructions('${recipe.id}')">Save Recipe</button>
+                    <button onclick="addInstructions('${recipe.id}', '${recipe.title}', '${recipe.image}')">Save Recipe</button>
                     <div style="clear: both;"></div>
                 </li>`;
         });
@@ -114,10 +115,10 @@ function displayPreviews(previewJSON) {
     }
 }
 
-async function addInstructions(recipeID) {
+async function addInstructions(recipeID, recipeTitle, recipeImage) {
     //just a placeholder for recipeID/ not sure whether we should call recipe handler get to get the ID or 
     try {
-        let response = await fetch("api/v1/recipe?recipeID=" + recipeID, {method: 'POST'})
+        let response = await fetch(`api/v1/recipe?recipeID=${recipeID}&recipeTitle=${recipeTitle}&recipeImage=${recipeImage}`, {method: 'POST'})
         if (response.status === 401) {
             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
             return;
@@ -175,3 +176,4 @@ function showUpdateNotification(status) {
         }
     }, 3000);
 }
+

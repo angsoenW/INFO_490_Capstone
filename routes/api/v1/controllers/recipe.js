@@ -5,11 +5,30 @@ import axios from 'axios'
 var router = express.Router();
 
 router.get('/', async (req, res) => {
+    try {
+        let savedRecipe = await req.models.Recipe.findOne({ username: req.session.account.username })
+        
+        
+        // Attempt to find the recipe by its ID
     
+        if (savedRecipe) {
+
+            res.status(200).json(savedRecipe.recipe);
+        } else {
+            res.status(404).json({ message: 'Recipe not found' });
+        }
+    
+      }
+      catch (e) {
+        res.status(500).json({ e: e.message })
+      }
 })
 
 router.post('/', async (req, res) => {
     const recipeID = req.query.recipeID;
+    const recipeTitle = req.query.recipeTitle;
+    const recipeImage = req.query.recipeImage;
+
     try {
         const instructionsResponse = await axios.get(`https://api.spoonacular.com/recipes/${recipeID}/analyzedInstructions`, {
             params: {
@@ -35,6 +54,8 @@ router.post('/', async (req, res) => {
                 // Create new Instruction document
                 let newInstruction = await req.models.Instruction.create({ 
                     recipeID, 
+                    recipeTitle,
+                    recipeImage,
                     steps: instructions 
                 })
 
@@ -48,6 +69,8 @@ router.post('/', async (req, res) => {
             // If no savedRecipe, create a new Recipe document
             let newInstruction = await req.models.Instruction.create({ 
                 recipeID, 
+                recipeTitle,
+                recipeImage,
                 steps: instructions 
             })
 
@@ -67,7 +90,30 @@ router.post('/', async (req, res) => {
 })
 
 router.delete('/', async (req, res) => {
+    const recipeID = req.query.recipeID;
+    console.log(recipeID, "AAAAAAAAAAAAAAAAAAA")
+    try {
+        if(!req.session.isAuthenticated) {
+            return res.status(401).json({ 
+                status: "error", 
+                error: "not logged in" 
+            })
+        }
 
+        let recipe = await req.models.Recipe.findOne({ username: req.session.account.username })
+
+        //Delete recipe from the user's saved recipe array
+        if(recipe) {
+            recipe.recipe = recipe.recipe.filter(instruction => instruction.recipeID !== recipeID)
+            await recipe.save()
+        }
+
+        res.status(200).json({ message: 'Instructions deleted successfully' })
+        
+    }
+    catch(e) {
+        res.status(500).json({ e: e.message })
+    }
 })
 
 export default router
