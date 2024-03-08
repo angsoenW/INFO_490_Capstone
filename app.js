@@ -3,7 +3,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sessions from 'express-session';
-
+import localStorage from "localStorage";
 
 import WebAppAuthProvider from 'msal-node-wrapper'
 
@@ -82,6 +82,7 @@ app.get(
 app.get(
 	'/signout',
 	(req, res, next) => {
+        localStorage.clear();
 		return req.authContext.logout({
 			postLogoutRedirectUri: "/",
 		})(req, res, next);

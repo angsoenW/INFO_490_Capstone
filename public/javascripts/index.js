@@ -6,7 +6,8 @@ async function init() {
     if (identityInfo.status == "loggedin"){
         await displayIngredients()
     }
-
+    localStorage.removeItem('diet')
+    localStorage.removeItem('intolerances')
 }
 
 async function addIngredient() {
@@ -36,9 +37,8 @@ async function addIngredient() {
 
 }
 
-async function removeIngredient() {
+async function removeIngredient(ingredient) {
 
-    let ingredient = document.getElementById("ingredientsInput").value
     if (ingredient === "") {
         document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
         return;
@@ -78,7 +78,10 @@ async function displayInstructions() {
 
 async function previewRecipe() {
     try {
-        let preview = await fetch("api/v1/generate?ingredientsList=" + ingredientsString, {
+        let diet = localStorage.getItem('diet') || ''
+        let intolerances = localStorage.getItem('intolerances') || ''
+        
+        let preview = await fetch(`api/v1/generate?ingredientsList=${ingredientsString}&diet=${diet}&intolerances=${intolerances}`, {
             method: 'GET',
         })
         if (preview.status === 401) {
@@ -100,10 +103,19 @@ function displayPreviews(previewJSON) {
     } else if (previewJSON.results && previewJSON.results.length > 0) {
         let htmlContent = '<ul style="list-style-type:none;">';
         previewJSON.results.forEach(function(recipe) {
+            let missedIngredientsList = '';
+            if (recipe.missedIngredients && recipe.missedIngredients.length > 0) {
+                missedIngredientsList += '<p>Missing Ingredients: ';
+                const ingredientNames = recipe.missedIngredients.map(function(ingredient) {
+                    return ingredient.name;
+                });
+                missedIngredientsList += ingredientNames.join(', ') + '.</p>';
+            }
             htmlContent += `
                 <li style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
                     <img src="${recipe.image}" alt="${recipe.title}" style="width: 100px; height: auto; float: left; margin-right: 20px;">
                     <p><strong>${recipe.title}</strong></p>
+                    ${missedIngredientsList}
                     <button onclick="addInstructions('${recipe.id}', '${recipe.title}', '${recipe.image}')">Save Recipe</button>
                     <div style="clear: both;"></div>
                 </li>`;
@@ -141,7 +153,10 @@ async function displayIngredients() {
         let ingredientsList = data.contents;
         let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
         ingredientsList.forEach(ingredient => {
-            ingredientsHTML += `<li>${ingredient}</li>`;
+            ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
+            <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
+            </li>`;
         });
         ingredientsHTML += "</ul>";
         document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;

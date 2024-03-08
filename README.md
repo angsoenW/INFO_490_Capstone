@@ -27,7 +27,8 @@ Node.js installation
 
 ## Contributing
 
-TBD.
+-- TODO: public\index.html
+-- TODO: public\stylesheets\style.css
 
 ### Branching
 

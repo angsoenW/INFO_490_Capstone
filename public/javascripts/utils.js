@@ -62,3 +62,26 @@ async function displayError(){
     document.getElementById('errorInfo').innerText= ''
     document.getElementById('errorInfo').style.opacity = 0
 }
+
+function handleCheck(event) {
+    let checkboxId = event.target.id;
+    let isChecked = event.target.checked;
+    let label = document.querySelector(`label[for="${checkboxId}"]`).textContent;
+
+    let intolerances = JSON.parse(localStorage.getItem('intolerances')) || [];
+
+    if (isChecked) {
+        intolerances.push(label);
+    } else {
+        intolerances = intolerances.filter(intolerance => intolerance !== label);
+    }
+
+    localStorage.setItem('intolerances', JSON.stringify(intolerances));
+}
+
+function handleRadio(event) {
+    let radioId = event.target.id;
+    let label = document.querySelector(`label[for="${radioId}"]`).textContent;
+
+    localStorage.setItem('diet', label);
+}

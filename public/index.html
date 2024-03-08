@@ -13,13 +13,81 @@
   <div id="identity_div">loading...</div>
   <h1>Find Recipes Based on Your Ingredients</h1>
   <div style="text-align:center; margin-bottom:20px;">
-     <!--I want to make it display one more input when user types in the input. Find example:https://www.fedex.com/en-us/tracking.html-->
+    <!--I want to make it display one more input when user types in the input. Find example:https://www.fedex.com/en-us/tracking.html-->
     <input type="text" id="ingredientsInput" placeholder="Enter ingredients here, separated by comma">
     <button onclick="addIngredient()">Add Ingredient</button>
-    <button onclick="removeIngredient()">Remove Ingredient</button>
   </div>
   <div id="ingredient_preview">Ingredient list will appear here...</div>
-  <button onClick="previewRecipe()">Preview Recipes</button>
+
+  <div id="filters">
+    <h3>Diet</h3>
+    <div class="form-check-container">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="glutenFree" name="diet" value="glutenFree" onClick="handleRadio(event)">
+            <label class="form-check-label" for="glutenFree">Gluten Free</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="vegetarian" name="diet" value="vegetarian" onClick="handleRadio(event)">
+            <label class="form-check-label" for="vegetarian">Vegetarian</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="vegan" name="diet" value="vegan" onClick="handleRadio(event)">
+            <label class="form-check-label" for="vegan">Vegan</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="pescatarian" name="diet" value="pescatarian" onClick="handleRadio(event)">
+            <label class="form-check-label" for="pescatarian">Pescatarian</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="paleo" name="diet" value="paleo" onClick="handleRadio(event)">
+            <label class="form-check-label" for="paleo">Paleo</label>
+        </div>
+    </div>
+
+    <h3>Intolerances</h3>
+    <div class="form-check-container">
+      
+      <div class="form-check-column">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="dairy" name="intolerance" value="dairy" onClick="handleCheck(event)"> 
+            <label class="form-check-label" for="dairy">Dairy</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="peanut" name="intolerance" value="peanut" onClick="handleCheck(event)">
+              <label class="form-check-label" for="peanut">Peanut</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="soy" name="intolerance" value="soy" onClick="handleCheck(event)">
+              <label class="form-check-label" for="soy">Soy</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="egg" name="intolerance" value="egg" onClick="handleCheck(event)">
+              <label class="form-check-label" for="egg">Egg</label>
+          </div>
+      </div>
+
+      <div class="form-check-column">
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="seafood" name="intolerance" value="seafood" onClick="handleCheck(event)">
+              <label class="form-check-label" for="seafood">Seafood</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gluten" name="intolerance" value="gluten" onClick="handleCheck(event)">
+              <label class="form-check-label" for="gluten">Gluten</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="treeNut" name="intolerance" value="treeNut" onClick="handleCheck(event)">
+              <label class="form-check-label" for="treeNut">Tree Nut</label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="wheat" name="intolerance" value="wheat" onClick="handleCheck(event)">
+              <label class="form-check-label" for="wheat">Wheat</label>
+          </div>
+      </div>
+
+    </div>
+</div>
+  <div class="text-center"><button onClick="previewRecipe()">Preview Recipes</button></div>
   <div id="recipe_preview"></div>
 </body>
 

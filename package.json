@@ -13,6 +13,7 @@
     "express": "^4.18.2",
     "express-session": "^1.18.0",
     "install": "^0.13.0",
+    "localStorage": "^1.0.4",
     "mongoose": "^8.1.2",
     "morgan": "~1.9.1",
     "msal-node-wrapper": "https://gitpkg.now.sh/kylethayer/ms-identity-javascript-nodejs-tutorial-msal-node-v2-/Common/msal-node-wrapper?main",
