@@ -24,6 +24,9 @@ let recipeSchema = new mongoose.Schema({
 let inventorySchema = new mongoose.Schema({
     username: String,
     contents: [String],
+    // (Yi) Add for calculating expiration date.
+    puchaseDate: Date,
+    expirationDate: Date
 })
 
 models.Instruction = mongoose.model('Instruction', instructionSchema)

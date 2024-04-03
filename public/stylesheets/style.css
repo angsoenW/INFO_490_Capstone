@@ -65,6 +65,15 @@ a {
   border: 1px solid #ccc;
 }
 
+/* (Yi) Add styles for date input area */
+#dateInput {
+  padding: 10px;
+  margin: 10px 0;
+  width: calc(100% - 22px); /* Adjust width to fit container, considering padding */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 /* Style buttons for better user interaction */
 button {
   background-color: #007bff; /* Bootstrap primary color */
