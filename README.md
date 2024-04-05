@@ -30,7 +30,7 @@ Node.js installation
 
 -- TODO: public\index.html
 -- TODO: public\stylesheets\style.css
--- TODO: FOOD expiration management(field for food input date, ability to edit the expiration days...)
+-- TODO: FOOD expiration management(adding ingredients periods in public/expirationPeriods.json, ability to edit the expiration days...)
 
 ### Branching
 
