@@ -20,6 +20,7 @@ Node.js installation
 2. In VS Code, go to Terminal -> New Terminal
 3. Type "npm install"
 4. Type "npm start"
+5. Type "localhost:3000"
 
 ## Building and Deployment
 
@@ -29,6 +30,7 @@ Node.js installation
 
 -- TODO: public\index.html
 -- TODO: public\stylesheets\style.css
+-- TODO: FOOD expiration management(field for food input date, ability to edit the expiration days...)
 
 ### Branching
 
