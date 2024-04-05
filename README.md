@@ -31,6 +31,7 @@ Node.js installation
 -- TODO: public\index.html
 -- TODO: public\stylesheets\style.css
 -- TODO: FOOD expiration management(adding ingredients periods in public/expirationPeriods.json, ability to edit the expiration days...)
+-- TODO: Switch icon to put food into freezer, notification every 10 days to remind users. 
 
 ### Branching
 
