@@ -174,27 +174,6 @@ async function addInstructions(recipeID, recipeTitle, recipeImage) {
 
 }
 
-async function displayIngredients() {
-    try {
-        let response = await fetch("api/v1/inventory", {method: 'GET'});
-        let data = await response.json();
-        ingredientsString = data.contents.join(", ");
-        let ingredientsList = data.contents;
-        let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
-        ingredientsList.forEach(ingredient => {
-            ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
-            <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
-            </li>`;
-        });
-        ingredientsHTML += "</ul>";
-        document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
-    }
-    catch(e) {
-        document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
-    }
-}
-
 function showUpdateNotification(status) {
     let notification = document.createElement("div");
     console.log(status)
