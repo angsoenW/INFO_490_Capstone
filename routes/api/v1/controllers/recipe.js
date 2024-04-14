@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
         // Attempt to find the recipe by its ID
     
         if (savedRecipe) {
-
             res.status(200).json(savedRecipe.recipe);
         } else {
             res.status(404).json({ message: 'Recipe not found' });

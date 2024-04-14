@@ -1,4 +1,5 @@
 let ingredientsString = ""
+let identity
 async function init() {
     
     await loadIdentity();
@@ -11,7 +12,7 @@ async function init() {
 }
 
 async function getExpirationPeriods() {
-    const response = await fetch('./expirationPeriods.json');
+    const response = await fetch('../data/expirationPeriods.json');
     return await response.json();
 }
 
@@ -24,23 +25,46 @@ async function addIngredient() {
         return;
     }
     if (purchaseDate === "") {
-        document.getElementById("dateInput").placeholder = "Invalid Date!";
-        return;
+        let today = new Date();
+        let month = String(today.getMonth() + 1).padStart(2, '0');
+        let day = String(today.getDate()).padStart(2, '0');
+        let year = today.getFullYear();
+        purchaseDate = `${month}/${day}/${year}`;
     }
 
     let expirationPeriods = await getExpirationPeriods();
     let shelfLifeDays = expirationPeriods[ingredient];
     
-    let purchaseDateObj = new Date(purchaseDate);
+    //let purchaseDateObj = new Date(purchaseDate);
     if (!shelfLifeDays) {
-        console.error('Shelf life for the ingredient is not defined');
-        return;
+        //console.error('Shelf life for the ingredient is not defined');
+        shelfLifeDays = 10;
     }
-    let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays)).toISOString().split('T')[0];
+
+    // TBD: Do we need to calculate expiration date? I'm thinking we can just store the purchase date and shelf life days
+    // TBD: shelfLifeDays should be calculated in backend?
+    // let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays));
+    // console.log(expirationDate);
+    // expirationDate = expirationDate.toISOString().split('T')[0];
     
     let status;
     try {
-        let response = await fetch("api/v1/inventory?ingredient=" + ingredient + expirationDate, {method: 'POST'})
+        let data = {
+            ingredient: ingredient,
+            puchaseDate: purchaseDate
+        };
+
+        console.log("adding" + data)
+        console.log("adding" + identity)
+
+
+        let response = await fetch("api/v1/inventory?ingredient=" + identity, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }});
+
         status = response.status;
         if (response.status === 401) {
             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
@@ -83,28 +107,122 @@ async function removeIngredient(ingredient) {
 
 }
 
+// Update by Jasper: Existing bug: 1. when click on add ingredient button twice, program fails
+// 2. when click add ingredient, the ingredient is add to the database but page is not updated. refresh to see the update
 async function displayIngredients() {
     try {
         let response = await fetch("api/v1/inventory", {method: 'GET'});
         let data = await response.json();
-        ingredientsString = data.contents.join(", ");
-        let ingredientsList = data.contents;
-        let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
-        ingredientsList.forEach(ingredient => {
-            ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
-            <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
-            </li>`;
-        });
-        ingredientsHTML += "</ul>";
-        document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
+        if (data.length === 0) {
+            document.getElementById("ingredient_preview").innerHTML = `<p>No inventory found.</p> <button onclick="addNewInventory()">Add New Inventory</button></div>`;
+        } else {
+            for (let invent in data) {
+                invent = data[invent]
+
+                identity = invent._id
+                if (!invent.contents) {
+                    document.getElementById("ingredient_preview").innerHTML = `<p>No item in inventory.</p> <button onclick="addNewInventory()">Add New Inventory</button></div>`;
+                } else {
+                    // ingredientsString = invent.contents.join(", ");
+                    let ingredientsList = invent.contents;
+                    let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
+                    ingredientsList.forEach(ingredient => {
+                        ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="flex-grow: 1; margin-right: 10px;">${ingredient.ingredient}</span>
+                        <button class="delete-btn" onclick="removeIngredient('${ingredient.ingredient}')">Remove Ingredient</button>
+                        </li>`;
+                    });
+                    ingredientsHTML += "</ul>";
+                    document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
+                }
+            }
+        }
+        
     }
     catch(e) {
         document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
     }
 }
 
+function readItem(item) {
+    return item.ingredient
+}
 
+// async function displayIngredients() {
+//     try {
+//         let response = await fetch("api/v1/inventory", {method: 'GET'});
+//         let data = await response.json();
+//         console.log(data)
+//         if (data.length === 0) {
+//             document.getElementById("ingredient_preview").innerHTML = `<p>No inventory found.</p> <button onclick="addNewInventory()">Add New Inventory</button></div>`;
+//         } else {
+//             let navBarHTML = '<div id="navBar">';
+//             data.forEach((item, index) => {
+//                 identity = item._id
+//                 console.log("findme" + identity)
+//                 navBarHTML += `<button onclick="displayIngredientList(${index})">Ingredient List ${index + 1}</button>`;
+//             });
+//             navBarHTML += '<button onclick="addNewInventory()">Add New Inventory</button></div>';
+
+//             // Add the navigation bar to the top of the window
+//             document.getElementById("ingredient_preview").insertAdjacentHTML('afterbegin', navBarHTML);
+//             //console.log("findme123")
+//             // Display the first ingredient list by default
+//             displayIngredientList(0);}
+//             console.log("findme456")
+//             // Create a navigation bar for ingredient lists
+//     } catch(e) {
+//         document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
+//     }
+// }
+
+// async function displayIngredientList(index) {
+//     fetch("api/v1/inventory", {method: 'GET'})
+//     .then(response => response.json())
+//     .then(data => {
+//         let ingredientsList = Object.values(data[0].contents[index]);
+//         let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
+//         ingredientsList.forEach(ingredient => {
+//             ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+//             <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
+//             <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
+//             </li>`;
+//         });
+//         ingredientsHTML += "</ul>";
+//         document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
+//     })
+//     .catch(e => {
+//         document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
+//     });
+// }
+
+async function addNewInventory() {
+    let status;
+    identity = "add"
+    try {
+        let response = await fetch("api/v1/inventory?ingredient=" + identity, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }});
+
+        status = response.status;
+        if (response.status === 401) {
+            document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
+            document.getElementById("dateInput").placeholder = "You need to log in to perform this action.";
+            return;
+        } else {
+            console.log(await response.json());
+        }
+    } catch(e) {
+        console.log(e.message);
+    }
+
+    await displayIngredients();
+    showUpdateNotification(status);
+}
+
+// Need to be edited: ingredientsString should be a list of selected ingredients from user instead of everything in the inventory
 async function previewRecipe() {
     try {
         let diet = localStorage.getItem('diet') || ''
@@ -172,27 +290,6 @@ async function addInstructions(recipeID, recipeTitle, recipeImage) {
 
     //await displayIngredients();
 
-}
-
-async function displayIngredients() {
-    try {
-        let response = await fetch("api/v1/inventory", {method: 'GET'});
-        let data = await response.json();
-        ingredientsString = data.contents.join(", ");
-        let ingredientsList = data.contents;
-        let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
-        ingredientsList.forEach(ingredient => {
-            ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-            <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
-            <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
-            </li>`;
-        });
-        ingredientsHTML += "</ul>";
-        document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
-    }
-    catch(e) {
-        document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
-    }
 }
 
 function showUpdateNotification(status) {

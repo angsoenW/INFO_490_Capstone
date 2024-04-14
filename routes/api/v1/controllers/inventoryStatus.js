@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
                 error: "not logged in" 
             }) 
         }
-        let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
+        let inventory = await req.models.Inventory.find({username: req.session.account.username})
+        //console.log("findme" + inventory)
         res.status(200).json(inventory)
     }
     catch(e) {
@@ -27,24 +28,52 @@ router.post('/', async (req, res) => {
                 error: "not logged in" 
             })
         }
-
-        let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
-        const ingredients = req.query.ingredient.split(',').map(ingredient => ingredient.trim());
-
-        if(inventory) {
-            ingredients.forEach(ingredient => {
-                if (!inventory.contents.includes(ingredient)) {
-                    inventory.contents.push(ingredient);
-                }
-            });
+        if (req.query.ingredient !== "add") {
+            let inventory = await req.models.Inventory.findById({ _id: req.query.ingredient })
+            const purchaseDate = req.body.purchaseDate
+            const ingredients = req.body.ingredient.split(',').map(ingredient => ingredient.trim());
+            if(inventory) {
+                ingredients.forEach(async ingredient => {
+                    let newItem = await req.models.Item.create({ 
+                        ingredient,
+                        purchaseDate,
+                        shelfLifeDays: 10
+                    })
+                    inventory.contents.push(newItem)
+                    await inventory.save()
+                });
+    
+            } else {
+                let result = []
+    
+                ingredients.forEach(async ingredient => {
+                    
+                    let newItem = await req.models.Item.create({ 
+                        ingredient,
+                        purchaseDate,
+                        shelfLifeDays: 10
+                    })
+                    
+                    result.push(newItem)
+                })
+    
+                inventory = await req.models.Inventory.create({
+                    username: [req.session.account.username],
+                    contents: null
+                })
+            }
+            await inventory.save() 
+            res.status(200).json(inventory)
         } else {
-            inventory = await req.models.Inventory.create({
-                username: req.session.account.username,
-                contents: [req.query.ingredient]
+            let inventory = await req.models.Inventory.create({
+                username: [req.session.account.username],
+                contents: []
             })
+
+            await inventory.save() 
+            res.status(200).json(inventory)
         }
-        await inventory.save() 
-        res.status(200).json(inventory)
+        
     }
     catch(e) {
         res.status(500).json({ e: e.message })
