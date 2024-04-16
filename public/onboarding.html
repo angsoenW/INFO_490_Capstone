@@ -2,4 +2,199 @@
   <head>
     <meta charset="utf-8">
   </head>
+  <body>
+    <div id="onboarding_wrapper" class="container">
+          <div class="sticky-wrapper">
+              <header>
+                <div class="headerRow">
+                      <div class="logo">
+                        <a href="../index.html">
+                          <img src="../images/Logo.png" alt="What You Got Left?">
+                        </a>
+                      </div>
+                  <nav id="nav" class="nav-holder">
+                    <ul id="nav" class="menu">
+                          <li><a href="#">Recipe Generator</a></li>
+                          <li><a href="#">My Fridge</a></li>
+                          <li><a href="#">About</a></li>
+                          <li><a href="#">FAQ</a></li>
+                          <li><a href="#">Profile</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </header>
+
+              <!-- ************ Progress Bar *********** -->
+
+              <div class="progress">
+                  <div class="progress-bar">
+                    <label for="file">File progress:</label>
+                      <progress id="file" max="100" value="10">10%</progress>
+                  </div> <!-- END Progress Bar -->
+              </div>
+
+              <!-- ************ MAIN CONTENT *********** -->
+              <div class="onboarding-content-wrapper">
+
+                  <!-- ************ SETUP ACCOUNT STEP 1 *********** -->
+                  <div id="setup-account-wrapper" class="onboarding-quiz" data-step="1">
+                      <h2 class="onboarding-question">How often do you cook?</h2>
+
+                      <div id="account-details">
+                          <fieldset class="onboarding-form">
+
+                              <div class="line-wrap">
+                                  <div class="label-wrap">
+                                      <label>
+                                          User Name
+                                          <span class="required">*</span>
+                                      </label>
+                                  </div>
+                                  <input type="text" required name="acct-user-name" id="acct-username" placeholder="Username">
+                              </div>
+
+                              <div class="line-wrap">
+                                  <div class="label-wrap">
+                                      <label>
+                                          Account Name
+                                          <span class="required">*</span>
+                                      </label>
+                                  </div>
+                                  <input type="text" required name="acct-name" id="acct-name" placeholder="Company Name">
+                              </div>
+
+                              <div class="line-wrap">
+                                  <div class="label-wrap">
+                                      <label>
+                                          Email Address
+                                          <span class="required">*</span>
+                                      </label>
+                                  </div>
+                                  <input type="email" required name="acct-email" id="acct-email" placeholder="john@johndoe.com">
+                              </div>
+
+                              <div class="line-wrap">
+                                  <div class="label-wrap">
+                                      <label>
+                                          Password
+                                          <span class="required">*</span>
+                                      </label>
+                                  </div>
+                                  <input required type="password" name="acct-password" id="acct-password" placeholder="Min. 8 characters" pattern=".{8,}" title="Min. 8 characters">
+                              </div>
+                          </fieldset>
+                      </div> <!-- end ACCOUNT-DETAILS -->
+                  </div> <!-- end SETUP-ACCOUNT -->
+
+                  <!-- ************ SETUP CONFIRMATION STEP 3 *********** -->
+                  <div id="setup-confirmation-wrapper" class="wizard-content-step" data-step="3">
+                      <h2 class="onboarding-title">You're almost finished! Please review your details below.</h2>
+
+                      <div id="confirmation-details">
+                          <div id="info-review-wrapper">
+                              <div id="info-review-top">
+                                  <h3 class="review-title">Account Information <a href="#" class="link-step" data-step="1">[edit]</a></h3>
+                                  <ul class="review-list">
+                                      <li>Username: <span id="recap_username">JohnDoe</span></li>
+                                      <li>Account Name: <span id="recap_account_name">2600hz</span></li>
+                                      <li>Email: <span id="recap_email">JohnDoe@2600hz.com</span></li>
+                                  </ul>
+                              </div>
+
+                              <div id="info-review-bottom">
+                                  <h3 class="review-title">Billing Information <a href="#" class="link-step" data-step="2">[edit]</a></h3>
+
+                                  <ul class="review-list">
+                                      <li>Card: <span id="cardtype">Mastercard</span> ************<span id="last4digits">1234</span></li>
+                                      <li>Name: <span id="full_name">John Doe</span></li>
+                                      <li>Address: <span id="street">116 Natoma St.</span> <br> <span id="city_state_zip">San Francisco, CA 94105</span></li>
+                                  </ul>
+
+                              </div>
+                          </div>
+
+                          <div id="order-review-wrapper">
+                              <h3 class="review-title">Review and confirm your order</h3>
+
+                              <div id="order-review">
+                                  <div id="totalcost-title">
+                                      Total Cost
+                                  </div>
+
+                                  <div id="totalcost-number" data-price="29.99">
+                                      $29.99
+                                  </div>
+
+                                  <div id="ordersummary-title">
+                                      Order Summary
+                                  </div>
+
+                                  <ul id="ordersummary-list">
+                                      <li><strong id="amount_twoway_trunks">1</strong> Unlimited Outbound Trunks</li>
+                                      <li><strong id="amount_inbound_trunks">1</strong> Unlimited Inbound Trunks</li>
+                                      <li><strong id="amount_money">$0.00</strong> Pay As-you-go Balance</li>
+                                      <li><strong id="amount_numbers">0</strong> Inbound DID Numbers</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div> <!-- end CONFIRMATION-DETAILS -->
+
+                      <p id="confirmation-paragraph">Review the details above to confirm that your information is correct. You will receive a confirmation email upon account<br> completion. In the next step you will be guided on how to use your Trunking.io servies and connect your first PBX.</p>
+
+                      <button id="confirm-complete">Complete Your Order</button>
+
+                      <p id="confirmation-paragraph">By clicking the 'Complete Your Order' button above, I acknowledge <br> that I understand and agree with the Trunking.io terms and conditions.<br> <a href="../docs/TermsAndConditions.pdf" target="_blank">View Terms and Conditions</a></p>
+
+                  </div> <!-- end SETUP-CONFIRMATION-WRAPPER -->
+
+                  <div id="progress-wrap">   <!-- Hide progress-wrap when on step 3 confirmation -->
+                      <div id="go-back" class="prev-step">
+                          <a href="#"></a>
+                          <div id="back-arrow">
+                          </div>
+                          <span>Back</span>
+                      </div>
+
+                      <div id="go-next" class="next-step">
+                          <a href="#"></a>
+                          <span>Next</span>
+                          <div id="next-arrow">
+                          </div>
+                      </div>
+                  </div> <!-- end PROGRESS-WRAP -->
+
+                  <!-- **********************************************************************************************************************************-->
+                  <!-- ***********   The following #setup-billing-wrapper-pt2 needs to hide (and become visible) with #setup-billing-wrapper   **********-->
+                  <div id="setup-billing-wrapper-pt2" class="wizard-content-step" data-step="2">
+                      <p class="side-note">A credit card is only needed for security &amp; verification purposes. This helps us prevent fraud.<br> Your card will not be charged without notifying you when you place an order to our paid services.<br> <a href="http://2600hz.com/privacy.html" target="_blank">See Privacy Policy</a></p>
+
+                      <div id="secure-img-wrapper">
+                          <img id="secure-lock" src="../images/onboarding/Secure_icon.png">
+                          <img id="braintree" src="../images/onboarding/Braintree_icon.png">
+                      </div>
+                  </div>
+                  <!-- **********************************************************************************************************************************-->
+              </div> <!-- end onboarding-content-wrapper -->
+          </div> <!-- end STICKY-WRAPPER -->
+
+          <div id="onboarding-footer">
+              <div id="footer-legal-wrap">
+                  <div id="terms-onboarding">
+                      <a href="../docs/TermsAndConditions.pdf" target="_blank">Terms and Conditions</a>
+                  </div>
+
+                  <p id="p-onboarding">Powered by <a href="http://2600hz.com" target="_blank">2600hz</a></p>
+              </div> <!-- end footer-legal-wrap -->
+          </div>
+
+          <div id="override_javascript_alert"></div>
+          <script type="text/javascript" src="../js/jquery.js"></script>
+          <script type="text/javascript" src="../js/UI/jquery-ui-1.9.1.custom.min.js"></script>
+          <!-- jQuery plugins -->
+          <script type="text/javascript" src="../js/script.js"></script>
+          <script type="text/javascript" src="../js/plugins/md5_generator.js"></script>
+
+      </div> <!-- end CONTAINER -->
+
+  </body> <!-- end BODY -->
 </html>
