@@ -1,27 +1,3 @@
 * {
   background-color: lightgreen;
 }
-
-.logo {
-  padding: 30px;
-  text-align: left;
-  color: black;
-  font-size: 30px;
-}
-
-.menu {
-  text-align: right;
-}
-
-header {
-  padding: 30px;
-  text-align: center;
-  background: #bc1a6b;
-  color: white;
-  font-size: 30px;
-}
-
-.onboarding-question {
-    color: navy;
-    margin-left: 20px;
-}
