@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+  This is the homepage includes selecting ingredients
+  and viewing recommended recipes.
+  To do: Only ingredients added in My Fridge will appear here.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Recipe Generator</title>
+  <link rel="stylesheet" href="./stylesheets/index.css">
+  <link rel="stylesheet" href="./stylesheets/recipeGeneratorStyles.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a>Recipe Generator</a>
+      <a href="./myFridge.html">My Fridge</a>
+      <a>About</a>
+      <a>FAQ</a>
+      <a>Login</a>
+    </nav>
+  </header>
+  <main>
+    <section class="what-u-got-left">
+      <h1>What You Got Left</h1>
+      <input id="search-ingredient-input" type="text" placeholder="Ingredients...">
+      <button id="search-button">Search</button>
+    </section>
+
+    <section class="what-can-we-make">
+      <h1>What Can We Make</h1>
+      <div class="recipes-container">
+        <img src="./img/icons/Ellipse 42.png" alt="chef">
+        <p>Select your ingredients</p>
+        <p>and let's make something delicious...</p>
+        <button id="finish-button">Finish</button>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
