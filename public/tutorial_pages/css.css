@@ -1,0 +1,451 @@
+body {
+    background-color: rgb(54,69,28);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    /* color: white; */
+}
+
+h1 {
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+    /* background-color: rgb(16, 75, 0); */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.navbar a {
+
+    /* display: block; */
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+}
+
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/*  logo  */
+.logo {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.inp {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: #ccc;
+    /* background-color: pink; */
+    font-size: 15px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.inp>div {
+    width: 40%;
+    /* background-color: pink; */
+
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    /* adjust width if needed*/
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: #fff;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.search-bar span {
+    color: black;
+    background-color: #fff;
+}
+
+.main {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.fenx {
+    display: flex;
+    justify-content: flex-start;
+    line-height: 30px;
+}
+
+.shezhi {
+    font-size: 20px;
+}
+
+.jia {
+    font-size: 40px;
+    margin-left: 30px;
+}
+
+.zhuanfa {
+    width: 100px;
+    background-color: #fff;
+    color: black;
+    height: 100%;
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+.zhua {
+    color: black;
+    background-color: #fff;
+}
+
+.com {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 25px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.fuy {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fuy>div {
+    width: 80px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.fuy>div>img {
+    width: 100%;
+    filter: grayscale(100%);
+}
+
+hr {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#hua {
+    position: absolute;
+    top: 150px;
+    left: 300px;
+    z-index: 1000;
+}
+
+#woman {
+    position: absolute;
+    top: 400px;
+    left: 600px;
+    z-index: 1000;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+}
+
+#woman-9 {
+    position: absolute;
+    top: 550px;
+    left: 900px;
+    z-index: 1000;
+}
+
+#hua-9 {
+    position: absolute;
+    top: 300px;
+    left: 600px;
+    z-index: 1000;
+}
+
+#arrow-9 {
+    position: absolute;
+    top: 215px;
+    left: 655px;
+    z-index: 2000; 
+}
+
+.main-9 {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+    z-index: 1000;
+}
+
+#woman-9 {
+    position: absolute;
+    top: 550px;
+    left: 900px;
+    z-index: 1000;
+}
+
+#hua-9 {
+    position: absolute;
+    top: 300px;
+    left: 600px;
+    z-index: 1000;
+}
+
+#arrow-9 {
+    position: absolute;
+    top: 215px;
+    left: 655px;
+    z-index: 2000; 
+}
+
+.main-10 {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.fuy>img {
+    width: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#how-many-input, #date-input, #to-input {
+    border-radius: 50px;
+    background-color: #f4f4f4;
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: white;
+    border: 1px solid #ddd;
+    height: 50px;
+    
+}
+
+input[type=button] {
+    width: 30%;
+    background-color: #9dbf63;
+    color: white;
+    padding: 14px 20px;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 25pt;
+  }
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 25px;
+    justify-content: center;
+    width: 60%;
+    font-size: 25pt;
+    margin: auto;
+    z-index: 1000;
+    position: absolute;
+    top: 300px;
+    left: 270px;
+}
+
+#woman-10 {
+    position: absolute;
+    top: 1050px;
+    left: 400px;
+    z-index: 1000;
+}
+
+#hua-10 {
+    position: absolute;
+    top: 850px;
+    left: 100px;
+    z-index: 1000;
+}
+ 
+.my-fridge {
+    background-color: #9dbf63;
+    color: white;
+    border-radius: 50px;
+}
+
+.main-11 {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#veggie {
+    position: relative;
+    z-index: 1000;
+}
+
+#woman-11 {
+    position: absolute;
+    top: 400px;
+    left: 600px;
+    z-index: 1000;
+}
+
+#hua-11 {
+    position: absolute;
+    top: 100px;
+    left: 200px;
+    z-index: 1000;
+}
+
+#carrot {
+   filter: none; 
+}
+
+p {
+    font-family: "Inter", sans-serif;
+}
+
+label {
+    font-family: "Inter", sans-serif;
+}
+
+input {
+    font-family: "Inter", sans-serif;
+}
+
+#woman-12 {
+    position: absolute;
+    top: 550px;
+    left: 900px;
+    z-index: 1000;
+}
+
+#hua-12 {
+    position: absolute;
+    top: 200px;
+    left: 400px;
+    z-index: 1000;
+}
+
+.tutorial-12 {
+    display: flex;
+    position: absolute;
+    top: 350px;
+    left: 525px;
+    z-index: 2000;
+}
+
+.fresh, .soon, .expired {
+    width: 120px;
+    margin-bottom: 20px;
+    border-radius: 100px;
+    padding: 20px;
+}
+
+.fresh {
+    background-color: #6ce370;
+}
+
+.soon {
+    background-color: #f7ebac;
+}
+
+.expired {
+    background-color: white;
+}
+
+.tutorial-12>div {
+    width: 140px;
+    margin: 20px;
+}
+
+.warning {
+    position: absolute;
+    color: #ff0000;
+    background-color: #ffb1b1;
+    font-size: 20pt;
+    top: 370px;
+    left: 1030px;
+    z-index: 2500;
+    padding: 5px 17px;
+    border-radius: 150px;
+}
+
+#carrot-12, #squash-12, #choy-12 {
+    filter: none;
+    background-color: #6ce370;
+    padding: 6px 8px;
+    border-radius: 150px;
+    width: 80px;
+}
+
+#pepper-12 {
+    filter: none;
+    background-color: #f7ebac;
+    padding: 6px 8px;
+    border-radius: 150px;
+    width: 80px;
+}
+
+#carrot-div, #squash-div, #choy-div, #pepper-div {
+    position: relative;
+    z-index: 1000;
+}
+
+#woman-13 {
+    position: absolute;
+    top: 550px;
+    left: 900px;
+    z-index: 1000;
+}
+
+#hua-13 {
+    position: absolute;
+    top: 200px;
+    left: 400px;
+    z-index: 1000;
+}
+
+#arrow-13 {
+    position: absolute;
+    top: -70px;
+    left: 665px;
+    z-index: 2000; 
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
