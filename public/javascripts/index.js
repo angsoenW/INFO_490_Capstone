@@ -51,10 +51,10 @@ async function addIngredient() {
     try {
         let data = {
             ingredient: ingredient,
-            puchaseDate: purchaseDate
+            purchaseDate: purchaseDate
         };
 
-        console.log("adding" + data)
+        console.log("adding" + data.puchaseDate)
         console.log("adding" + identity)
 
 
@@ -81,16 +81,16 @@ async function addIngredient() {
     showUpdateNotification(status);
 }
 
-async function removeIngredient(ingredient) {
+async function removeIngredient(_id) {
 
-    if (ingredient === "") {
+    if (_id === "") {
         document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
         return;
     }
     let status;
 
     try {
-        let response = await fetch("api/v1/inventory?ingredient=" + ingredient, {method: 'DELETE'})
+        let response = await fetch("api/v1/inventory?ingredient=" + _id, {method: 'DELETE'})
         status = response.status;
         if (response.status === 401) {
             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
@@ -126,10 +126,11 @@ async function displayIngredients() {
                     // ingredientsString = invent.contents.join(", ");
                     let ingredientsList = invent.contents;
                     let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
+                    // Future reference: if grouping feature is added, loop thru all invent.content and display each with _id, GET POST DELETE FUNCTION will take two param(inventory._id, item._id)
                     ingredientsList.forEach(ingredient => {
                         ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                         <span style="flex-grow: 1; margin-right: 10px;">${ingredient.ingredient}</span>
-                        <button class="delete-btn" onclick="removeIngredient('${ingredient.ingredient}')">Remove Ingredient</button>
+                        <button class="delete-btn" onclick="removeIngredient('${ingredient._id}')">Remove Ingredient</button>
                         </li>`;
                     });
                     ingredientsHTML += "</ul>";

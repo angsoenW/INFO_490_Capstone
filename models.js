@@ -11,7 +11,7 @@ console.log('succesffully connected to mongodb!')
 
 let itemSchema = new mongoose.Schema({
     ingredient: String,
-    puchaseDate: Date,
+    purchaseDate: Date,
     shelfLifeDays: Number
 })
 
