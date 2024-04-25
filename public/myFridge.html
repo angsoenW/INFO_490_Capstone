@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+  This is the My Fridge page to add ingredeients.
+  To do: rouping features.
+-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>My Fridge</title>
+  <link rel="stylesheet" href="./stylesheets/index.css">
+  <link rel="stylesheet" href="./stylesheets/myFridgeStyles.css">
+  <script src="javascripts/identity.js"></script>
+  <script src="javascripts/index.js"></script>
+  <script src="javascripts/utils.js"></script>
+  
+</head>
+
+<body onload="init()">
+  <header>
+    <nav>
+      <a href="index.html">Recipe Generator</a>
+      <a>My Fridge</a>
+      <a>About</a>
+      <a>FAQ</a>
+      <div id="identity_div">loading...</div>
+    </nav>
+  </header>
+  <main>
+    <h1>My Fridge</h1>
+    <input id="search-ingredient-input" type="text" placeholder="Ingredients...">
+    <button id="search-button">Search</button>
+    <section>
+      <h2>Veggie</h2>
+      <div class="ingredient-classification" id="veggie-container">
+        <!-- Ingredients will be added here by ./javascripts/loadIngredients.js -->
+      </div>
+    </section>
+    <section>
+      <h2>Meat</h2>
+      <div class="ingredient-classification" id="meat-container">
+        <!-- Ingredients will be added here by ./javascripts/loadIngredients.js -->
+      </div>
+    </section>
+    <section>
+      <h2>Fruit</h2>
+      <div class="ingredient-classification" id="fruit-container">
+        <!-- Ingredients will be added here by ./javascripts/loadIngredients.js -->
+      </div>
+    </section>
+    <section>
+      <h2>Seasoning</h2>
+      <div class="ingredient-classification" id="seasoning-container">
+        <!-- Ingredients will be added here by ./javascripts/loadIngredients.js -->
+      </div>
+    </section>
+  </main>
+  <script src="./javascripts/loadIngredients.js"></script>
+</body>
+
+</html>

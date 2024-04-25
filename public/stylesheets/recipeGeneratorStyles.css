@@ -1,0 +1,59 @@
+main {
+  display: flex;
+  margin-top: 30px;
+}
+
+.what-u-got-left {
+  width: 40%;
+  text-align: center;
+}
+
+.what-can-we-make {
+  width: 60%;
+  text-align: center;
+}
+
+.recipes-container {
+  background-color: white;
+  color: black;
+  margin: 5px;
+  padding: 20px;
+}
+
+.recipes-container img {
+  height: 300px;
+}
+
+#finish-button {
+  background-color: rgb(35, 53, 32);
+  color: white;
+  height: 30px;
+  width: 60px;
+}
+
+@media (max-width: 800px) {
+
+  main {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .what-u-got-left {
+    width: 100%;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  .what-can-we-make {
+    width: 100%;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 20px;
+  }
+
+  .recipes-container img {
+    height: 200px;
+  }
+
+}

@@ -1,0 +1,54 @@
+main {
+  text-align: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+section {
+  background-color: white;
+  color: black;
+  margin: 20px;
+  padding-top: 1px;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.ingredient-classification {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 20px;
+  padding-right: 5px;
+}
+
+.ingredient img {
+  height: 50px;
+  width: 50px;
+  filter: grayscale(100%);
+}
+
+.ingredient p {
+  margin-top: 0px;
+  font-size: 10px;
+}
+
+@media (max-width: 1200px) {
+
+  main {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  main {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .ingredient-classification {
+    padding-left: 10px;
+  }
+
+}
