@@ -78,7 +78,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-// TODO: DELETE METHOD STILL NEED TO BE FIXED. NOTHING GOT DELETED.
 router.delete('/', async (req, res) => {
     try {
         if (!req.session.isAuthenticated) {
@@ -90,18 +89,8 @@ router.delete('/', async (req, res) => {
         // For grouping feature, use find instead of findOne
         let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
         if (inventory) {
-            //let result = inventory.contents.id(req.query.ingredient)
-            inventory.contents.pull({ _id: req.query.ingredients})
-
-            // let resultItem
-            // for (let item in inventory.contents) {
-            //     if (item.findById({_id: req.query.ingredient})) {
-            //         resultItem = item
-            //         break
-            //     }
-            // }
-            // inventory.contents.remove(resultItem)
-            // await inventory.save()
+            inventory.contents.pull({ _id: req.query.ingredient })
+            await inventory.save()
             res.status(200).json(inventory)
         } else {
             res.status(204).json(inventory)
