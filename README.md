@@ -4,6 +4,8 @@
 
 How might college students efficiently utilize their existing kitchen ingredients to create diverse and healthy meals, so that they can reduce food waste?
 
+[Final Presentation Slides](https://docs.google.com/presentation/d/1uNaImKuhAJr-mPiRorxzdIVhfLF3mF2rErEXb1odAJE/edit?usp=sharing)
+
 ## Installation
 
 The solution will be developed at this repo: https://github.com/angsoenW/INFO_490_Capstone. All member has access to the repo for collaboration purposes. Visual Studio Code is recommended during development. 
