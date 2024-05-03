@@ -1,63 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>last step</title>
     <link rel="stylesheet" href="./css.css">
     <link rel="stylesheet" href="./font_4511178_4v291w6hna2/iconfont.css">
 
 </head>
 <style>
-    body{
+    body {
         background-color: #fff;
     }
-    .navbar{
-        background-color: rgb(94,151,59);
+
+    .navbar {
+        background-color: rgb(54, 69, 28);
+        overflow: hidden;
+        display: flex;
+        justify-content: space-around;
     }
-    .main{
+
+    .main {
         position: relative;
         margin-top: 30px;
     }
-    .left{
+
+    .left {
         width: 50%;
         /* height: 1000px; */
         margin-left: 10px;
         /* background-color: #000000; */
     }
-    .left img{
+
+    .left img {
         width: 600px;
         height: 668.3px;
     }
-    .right{
+
+    .right {
         width: 50%;
         margin-left: 10px;
         /* background-color: #ff6d6d; */
 
     }
-    .right>.com{
+
+    .right>.com {
         height: 964px;
     }
-    .main{
+
+    .main {
         display: flex;
         justify-content: space-between;
     }
-    #kong{
+
+    #kong {
         height: 100px;
     }
-    #hua{
+
+    #hua {
         position: absolute;
         top: 200px;
-        left:1150px;
+        left: 850px;
         z-index: 1000;
     }
-    #woman{
+
+    #woman {
         position: absolute;
         top: 370px;
-        left: 1200px;
+        left: 900px;
         z-index: 1000;
-    }.tanc{
+    }
+
+    .tanc {
         position: absolute;
         width: 500px;
         height: 500px;
@@ -67,24 +83,31 @@
         z-index: 1000;
         border-radius: 20px;
     }
-    .tanc h1{
+
+    .tanc h1 {
         color: black;
     }
-    .tanc span{
+
+    .tanc span {
         display: inline-block;
-        background-color: green;
+        background-color: rgb(54, 69, 28);
         width: 50%;
-        height: 70px;
-        color:white;
+        height: 80px;
+        color: white;
         font-size: 25px;
         line-height: 70px;
         transform: translateY(130px);
         border-radius: 0 0 0px 20px;
     }
-    .tanc .qw{
+
+
+    .tanc .qw {
         border-radius: 0 0 20px 0px;
     }
+
+    
 </style>
+
 <body>
     <div class="overlay"></div>
     <div class="navbar">
@@ -108,14 +131,15 @@
             <img src="./icon/c01026f7136a40dcada6598d48adbba.png" alt="" width="600px">
         </div>
     </div>
-    
+
     <div class="tanc">
         <img src="./icon/3.png" alt="">
-        <h1>Did you finishmaking thisrecipe?</h1>
+        <h1 class="finish">Did you finish making this recipe?</h1>
         <span>YES</span><span class="qw">NO</span>
     </div>
     </div>
-    <img src="./icon/icon_lists/7.png" alt="" id="hua" width="350px">
+    <img src="./icon/icon_lists/Group 123.png" alt="" id="hua" width="350px">
     <img src="./icon/icon_lists/Black and White Chef Food Logo 3.png" alt="" id="woman" width="500px">
 </body>
+
 </html>
