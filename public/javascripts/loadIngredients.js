@@ -2,7 +2,9 @@
 // database to load all ingredients.
 
 // Important: ID for each ingredient is created by function generateId.
-
+let inventory
+let ingredientList
+let identity
 document.addEventListener('DOMContentLoaded', function () {
   const ingredientData = [
     {
@@ -327,11 +329,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
+  async function getContent() {
+    let inventory
+    let response = await fetch("api/v1/inventory", { method: 'GET' });
+    let data = await response.json();
+    if (data.length !== 0) {
+      for (let invent in data) {
+        invent = data[invent]
+        if (invent.contents) {
+          inventory = invent.contents
+        }
+      }
+    }
+    return inventory
+  }
+
+  function getIngredient(inventory) {
+    console.log(inventory)
+    let ingredientList = []
+    inventory.forEach(ingredient => {
+      ingredientList.push(ingredient.ingredient)
+    })
+    return ingredientList
+  }
+
   function generateId(category, name) {
     return `${category.toLowerCase()}-${name.replace(/\s+/g, '-').toLowerCase()}`;
   }
 
-  function createIngredientElement(ingredient, category) {
+  function createIngredientElement(ingredient, category, ingredientList) {
     const ingredientElement = document.createElement('div');
     ingredientElement.className = 'ingredient';
 
@@ -340,6 +366,9 @@ document.addEventListener('DOMContentLoaded', function () {
     img.alt = ingredient.name;
     img.className = 'ingredient-image';
     img.id = generateId(category, ingredient.name);
+    if (ingredientList.includes(img.alt)) {
+      img.style.filter = 'grayscale(0%)';
+    }
 
     const name = document.createElement('p');
     name.textContent = ingredient.name;
@@ -351,7 +380,9 @@ document.addEventListener('DOMContentLoaded', function () {
     return ingredientElement;
   }
 
-  function loadIngredients() {
+  async function loadIngredients() {
+    inventory = await getContent()
+    ingredientList = getIngredient(inventory)
     ingredientData.forEach(categoryData => {
       const category = Object.keys(categoryData)[0];
       const ingredients = categoryData[category];
@@ -359,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (container) {
         ingredients.forEach(ingredient => {
-          const ingredientElement = createIngredientElement(ingredient, category);
+          const ingredientElement = createIngredientElement(ingredient, category, ingredientList);
           container.appendChild(ingredientElement);
         });
       }
@@ -387,9 +418,89 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function changeImageColor(evt) {
     if (evt.target.tagName === 'IMG') {
-      evt.target.style.filter = evt.target.style.filter === 'grayscale(0%)' ? 'grayscale(100%)' : 'grayscale(0%)';
+      if (evt.target.style.filter === 'grayscale(0%)') {
+        evt.target.style.filter = 'grayscale(100%)';
+      } else {
+        evt.target.style.filter = 'grayscale(0%)';
+      }
+
+      let itemToAdd = []
+
+      if (ingredientList.includes(evt.target.alt)) {
+        ingredientList = ingredientList.filter(item => item !== evt.target.alt);
+      } else {
+        ingredientList.push(evt.target.alt)
+      }
+
     }
   }
+
+  async function updateFridge() {
+    let ingredient = document.getElementById("ingredientsInput").value;
+    let purchaseDate = document.getElementById("dateInput").value;
+
+    if (ingredient === "") {
+      document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
+      return;
+    }
+    if (purchaseDate === "") {
+      let today = new Date();
+      let month = String(today.getMonth() + 1).padStart(2, '0');
+      let day = String(today.getDate()).padStart(2, '0');
+      let year = today.getFullYear();
+      purchaseDate = `${month}/${day}/${year}`;
+    }
+
+    let expirationPeriods = await getExpirationPeriods();
+    let shelfLifeDays = expirationPeriods[ingredient];
+
+    //let purchaseDateObj = new Date(purchaseDate);
+    if (!shelfLifeDays) {
+      //console.error('Shelf life for the ingredient is not defined');
+      shelfLifeDays = 10;
+    }
+
+    // TBD: Do we need to calculate expiration date? I'm thinking we can just store the purchase date and shelf life days
+    // TBD: shelfLifeDays should be calculated in backend?
+    // let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays));
+    // console.log(expirationDate);
+    // expirationDate = expirationDate.toISOString().split('T')[0];
+
+    let status;
+    try {
+      let data = {
+        ingredient: ingredient,
+        purchaseDate: purchaseDate
+      };
+
+      console.log("adding" + data.puchaseDate)
+      console.log("adding" + identity)
+
+
+      let response = await fetch("api/v1/inventory?ingredient=" + identity, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      status = response.status;
+      if (response.status === 401) {
+        document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
+        document.getElementById("dateInput").placeholder = "You need to log in to perform this action.";
+        return;
+      } else {
+        console.log(await response.json());
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    await displayIngredients();
+    showUpdateNotification(status);
+  }
+
 
   document.querySelectorAll('.ingredient-classification').forEach(container => {
     container.addEventListener('click', changeImageColor);

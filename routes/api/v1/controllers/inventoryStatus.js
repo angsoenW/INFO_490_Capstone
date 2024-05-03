@@ -1,82 +1,102 @@
-import {promises as fs} from 'fs'
-import express from 'express' 
+import { promises as fs } from 'fs'
+import express from 'express'
 
-var router = express.Router() 
+var router = express.Router()
 
 router.get('/', async (req, res) => {
     try {
-        if(!req.session.isAuthenticated) {
-            return res.status(401).json({ 
-                status: "error", 
-                error: "not logged in" 
-            }) 
+        if (!req.session.isAuthenticated) {
+            return res.status(401).json({
+                status: "error",
+                error: "not logged in"
+            })
         }
-        let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
+        let inventory = await req.models.Inventory.find({ username: req.session.account.username })
         res.status(200).json(inventory)
     }
-    catch(e) {
+    catch (e) {
         res.status(500).json({ e: e.message })
     }
 })
 
 router.post('/', async (req, res) => {
     try {
-        if(!req.session.isAuthenticated) {
-            return res.status(401).json({ 
-                status: "error", 
-                error: "not logged in" 
+        if (!req.session.isAuthenticated) {
+            return res.status(401).json({
+                status: "error",
+                error: "not logged in"
             })
         }
+        if (req.query.ingredient !== "add") {
+            let inventory = await req.models.Inventory.findById({ _id: req.query.ingredient })
+            const purchaseDate = req.body.purchaseDate
+            const ingredients = req.body.ingredient.split(',').map(ingredient => ingredient.trim());
+            if (inventory) {
+                ingredients.forEach(async ingredient => {
+                    let newItem = await req.models.Item.create({
+                        ingredient,
+                        purchaseDate,
+                        shelfLifeDays: 10
+                    })
+                    inventory.contents.push(newItem)
+                });
+                await inventory.save()
 
-        let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
-        const ingredients = req.query.ingredient.split(',').map(ingredient => ingredient.trim());
+            } else {
+                let result = []
 
-        if(inventory) {
-            ingredients.forEach(ingredient => {
-                if (!inventory.contents.includes(ingredient)) {
-                    inventory.contents.push(ingredient);
-                }
-            });
+                ingredients.forEach(async ingredient => {
+
+                    let newItem = req.models.Item.create({
+                        ingredient,
+                        purchaseDate,
+                        shelfLifeDays: 10
+                    })
+                    result.push(newItem)
+                })
+
+                inventory = await req.models.Inventory.create({
+                    username: [req.session.account.username],
+                    contents: null
+                })
+            }
+            await inventory.save()
+            res.status(200).json(inventory)
         } else {
-            inventory = await req.models.Inventory.create({
-                username: req.session.account.username,
-                contents: [req.query.ingredient]
+            let inventory = await req.models.Inventory.create({
+                username: [req.session.account.username],
+                contents: []
             })
+
+            await inventory.save()
+            res.status(200).json(inventory)
         }
-        await inventory.save() 
-        res.status(200).json(inventory)
+
     }
-    catch(e) {
+    catch (e) {
         res.status(500).json({ e: e.message })
     }
 })
 
 router.delete('/', async (req, res) => {
     try {
-        if(!req.session.isAuthenticated) {
-            return res.status(401).json({ 
-                status: "error", 
-                error: "not logged in" 
+        if (!req.session.isAuthenticated) {
+            return res.status(401).json({
+                status: "error",
+                error: "not logged in"
             })
         }
-
+        // For grouping feature, use find instead of findOne
         let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
-
-        if(inventory) {
-            const index = inventory.contents.indexOf(req.query.ingredient) 
-            if(index !== -1) {
-                inventory.contents.splice(index, 1) 
-                await inventory.save()
-                res.status(200).json(inventory) 
-            } else {
-                res.status(204).json(inventory) 
-            }
-            
+        if (inventory) {
+            inventory.contents.pull({ _id: req.query.ingredient })
+            await inventory.save()
+            res.status(200).json(inventory)
         } else {
-            res.status(404).json({ status: "error", error: "Inventory not found" }) 
+            res.status(204).json(inventory)
         }
     }
-    catch(e) {
+    catch (e) {
         res.status(500).json({ e: e.message })
     }
 })
