@@ -2,6 +2,7 @@
 <!--
   This is the My Fridge page to add ingredeients.
   To do: rouping features.
+  TODO: Add icon to each catrgory.
 -->
 <html lang="en">
 
@@ -10,11 +11,13 @@
   <title>My Fridge</title>
   <link rel="stylesheet" href="./stylesheets/index.css">
   <link rel="stylesheet" href="./stylesheets/myFridgeStyles.css">
+  <script src="./javascripts/loadIngredients.js"></script>
   <script src="javascripts/identity.js"></script>
   <script src="javascripts/index.js"></script>
   <script src="javascripts/utils.js"></script>
   
 </head>
+
 
 <body onload="init()">
   <header>
@@ -56,7 +59,6 @@
     </section>
     <button id="submit" onclick="updateFridge()">Update My Fridge</button>
   </main>
-  <script src="./javascripts/loadIngredients.js"></script>
 </body>
 
 </html>

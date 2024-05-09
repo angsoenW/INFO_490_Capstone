@@ -10,52 +10,47 @@ async function init() {
     //localStorage.removeItem('intolerances')
 }
 
-async function getExpirationPeriods() {
-    const response = await fetch('./expirationPeriods.json');
-    return await response.json();
-}
+// async function addIngredient() {
+//     let ingredient = document.getElementById("ingredientsInput").value;
+//     let purchaseDate = document.getElementById("dateInput").value;
 
-async function addIngredient() {
-    let ingredient = document.getElementById("ingredientsInput").value;
-    let purchaseDate = document.getElementById("dateInput").value;
+//     if (ingredient === "") {
+//         document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
+//         return;
+//     }
+//     if (purchaseDate === "") {
+//         document.getElementById("dateInput").placeholder = "Invalid Date!";
+//         return;
+//     }
 
-    if (ingredient === "") {
-        document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
-        return;
-    }
-    if (purchaseDate === "") {
-        document.getElementById("dateInput").placeholder = "Invalid Date!";
-        return;
-    }
-
-    let expirationPeriods = await getExpirationPeriods();
-    let shelfLifeDays = expirationPeriods[ingredient];
+//     let expirationPeriods = await getExpirationPeriods();
+//     let shelfLifeDays = expirationPeriods[ingredient];
     
-    let purchaseDateObj = new Date(purchaseDate);
-    if (!shelfLifeDays) {
-        console.error('Shelf life for the ingredient is not defined');
-        return;
-    }
-    let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays)).toISOString().split('T')[0];
+//     let purchaseDateObj = new Date(purchaseDate);
+//     if (!shelfLifeDays) {
+//         console.error('Shelf life for the ingredient is not defined');
+//         return;
+//     }
+//     let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays)).toISOString().split('T')[0];
     
-    let status;
-    try {
-        let response = await fetch("api/v1/inventory?ingredient=" + ingredient + expirationDate, {method: 'POST'})
-        status = response.status;
-        if (response.status === 401) {
-            document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
-            document.getElementById("dateInput").placeholder = "You need to log in to perform this action.";
-            return;
-        } else {
-            console.log(await response.json());
-        }
-    } catch(e) {
-        console.log(e.message);
-    }
+//     let status;
+//     try {
+//         let response = await fetch("api/v1/inventory?ingredient=" + ingredient + expirationDate, {method: 'POST'})
+//         status = response.status;
+//         if (response.status === 401) {
+//             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
+//             document.getElementById("dateInput").placeholder = "You need to log in to perform this action.";
+//             return;
+//         } else {
+//             console.log(await response.json());
+//         }
+//     } catch(e) {
+//         console.log(e.message);
+//     }
 
-    await displayIngredients();
-    showUpdateNotification(status);
-}
+//     await displayIngredients();
+//     showUpdateNotification(status);
+// }
 
 async function removeIngredient(ingredient) {
 

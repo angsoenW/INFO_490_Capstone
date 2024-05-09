@@ -20,7 +20,7 @@ const authConfig = {
                 console.log(message);
             },
             piiLoggingEnabled: false,
-            logLevel: 3,
+            logLevel: 1,
         }
     }
 };
@@ -36,6 +36,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());

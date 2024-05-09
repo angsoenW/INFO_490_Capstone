@@ -5,6 +5,10 @@
 let inventory
 let ingredientList
 let identity
+let itemToAdd = []
+let itemToRemove = []
+//let info = fetch("https://api.kroger.com/v1/products?filter.term=avocado")
+
 document.addEventListener('DOMContentLoaded', function () {
   const ingredientData = [
     {
@@ -424,57 +428,79 @@ document.addEventListener('DOMContentLoaded', function () {
         evt.target.style.filter = 'grayscale(0%)';
       }
 
-      let itemToAdd = []
-
       if (ingredientList.includes(evt.target.alt)) {
         ingredientList = ingredientList.filter(item => item !== evt.target.alt);
+        if (itemToAdd.includes(evt.target.alt)) {
+          itemToAdd = itemToAdd.filter(item => item !== evt.target.alt);
+        } else {
+          itemToRemove.push(evt.target.alt)
+        }
       } else {
         ingredientList.push(evt.target.alt)
+        if (itemToRemove.includes(evt.target.alt)) {
+          itemToRemove = itemToRemove.filter(item => item !== evt.target.alt);
+        } else {
+          itemToAdd.push(evt.target.alt)
+        }
       }
-
     }
   }
 
-  async function updateFridge() {
-    let ingredient = document.getElementById("ingredientsInput").value;
-    let purchaseDate = document.getElementById("dateInput").value;
+  document.querySelectorAll('.ingredient-classification').forEach(container => {
+    container.addEventListener('click', changeImageColor);
+  });
 
-    if (ingredient === "") {
-      document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
-      return;
-    }
-    if (purchaseDate === "") {
-      let today = new Date();
-      let month = String(today.getMonth() + 1).padStart(2, '0');
-      let day = String(today.getDate()).padStart(2, '0');
-      let year = today.getFullYear();
-      purchaseDate = `${month}/${day}/${year}`;
-    }
+  document.getElementById('search-button').addEventListener('click', filterIngredients);
 
-    let expirationPeriods = await getExpirationPeriods();
-    let shelfLifeDays = expirationPeriods[ingredient];
+  loadIngredients();
+});
 
-    //let purchaseDateObj = new Date(purchaseDate);
-    if (!shelfLifeDays) {
-      //console.error('Shelf life for the ingredient is not defined');
-      shelfLifeDays = 10;
-    }
+function updateFridge() {
+  addIngredient(itemToAdd)
+  //removeIngredient(itemToRemove)
+}
 
-    // TBD: Do we need to calculate expiration date? I'm thinking we can just store the purchase date and shelf life days
-    // TBD: shelfLifeDays should be calculated in backend?
-    // let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays));
-    // console.log(expirationDate);
-    // expirationDate = expirationDate.toISOString().split('T')[0];
+async function addIngredient(itemToAdd) {
+  // when new user is created, the page is set to undefined
+  console.log("adding" + itemToAdd)
+  // let ingredient = document.getElementById("ingredientsInput").value;
+  for (let item in itemToAdd) {
+    item = itemToAdd[item]
+
+    //let purchaseDate = ""
+
+    // if (purchaseDate === "") {
+    let today = new Date();
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let day = String(today.getDate()).padStart(2, '0');
+    let year = today.getFullYear();
+    let purchaseDate = `${month}/${day}/${year}`;
+    // }
+
+    let shelfLifeDays = await getExpirationPeriods(item);
+
+    // //let purchaseDateObj = new Date(purchaseDate);
+    // if (!shelfLifeDays) {
+    //   //console.error('Shelf life for the ingredient is not defined');
+    //   shelfLifeDays = 10;
+    // }
+
+    // // TBD: Do we need to calculate expiration date? I'm thinking we can just store the purchase date and shelf life days
+    // // TBD: shelfLifeDays should be calculated in backend?
+    // // let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays));
+    // // console.log(expirationDate);
+    // // expirationDate = expirationDate.toISOString().split('T')[0];
 
     let status;
     try {
+      console.log("adding" + JSON.stringify(shelfLifeDays))
       let data = {
-        ingredient: ingredient,
-        purchaseDate: purchaseDate
+        ingredient: item,
+        purchaseDate: purchaseDate,
+        shelfLifeDays: shelfLifeDays ? shelfLifeDays : 10
       };
 
-      console.log("adding" + data.puchaseDate)
-      console.log("adding" + identity)
+      console.log("adding" + data.purchaseDate)
 
 
       let response = await fetch("api/v1/inventory?ingredient=" + identity, {
@@ -497,16 +523,39 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(e.message);
     }
 
-    await displayIngredients();
-    showUpdateNotification(status);
+    //location.reload()
+    //showUpdateNotification(status);
+  }
+}
+
+async function getExpirationPeriods(item) {
+  let expirationPeriods = await fetch("api/v1/shelfLife?food=" + item);
+  //console.log("hmm" + await expirationPeriods.json())
+  return expirationPeriods.json();
+}
+
+async function removeIngredient(_id) {
+
+  if (_id === "") {
+    document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
+    return;
+  }
+  let status;
+
+  try {
+    let response = await fetch("api/v1/inventory?ingredient=" + _id, { method: 'DELETE' })
+    status = response.status;
+    if (response.status === 401) {
+      document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
+      return;
+    } else {
+      console.log(await response.json());
+    }
+  } catch (e) {
+    console.log(e.message)
   }
 
+  await displayIngredients()
+  showUpdateNotification(status);
 
-  document.querySelectorAll('.ingredient-classification').forEach(container => {
-    container.addEventListener('click', changeImageColor);
-  });
-
-  document.getElementById('search-button').addEventListener('click', filterIngredients);
-
-  loadIngredients();
-});
+}

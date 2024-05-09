@@ -1,0 +1,704 @@
+
+
+[
+  {
+    "Name": "Butter",
+    "Shelf_Days": 60
+  },
+  {
+    "Name": "Buttermilk",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Cheese",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Coffee creamer",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Cottage cheese",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Cream cheese",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Cream",
+    "Shelf_Days": 10
+  },
+  {
+    "Name": "Cream",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Dips",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Egg substitutes",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Eggnog",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Eggs",
+    "Shelf_Days": 35
+  },
+  {
+    "Name": "Kefir",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Margarine",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Whipped cream",
+    "Shelf_Days": 28
+  },
+  {
+    "Name": "Whipped topping",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Yogurt",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Beef",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Beef",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Lamb",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Lamb",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Veal",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Veal",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Pork",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Goat",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Pork",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Venison",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Variety meats",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Goat",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Bacon",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Corned beef",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Ham",
+    "Shelf_Days": 270
+  },
+  {
+    "Name": "Ham",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Ham",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Ham",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Hot dogs",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Sausage",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Sausage",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Sausage",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Stuffed, raw pork chops",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Raw kabobs with vegetables",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Chicken",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Turkey",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Ground turkey or chicken",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Chicken parts",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Turkey parts",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Duckling",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Goose",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Pheasant",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Quail",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Capon",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Cornish Hens",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Giblets",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Rotisserie chicken",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Lean fish",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Fatty fish",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Caviar",
+    "Shelf_Days": 28
+  },
+  {
+    "Name": "Scallops",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Shrimp, crayfish",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Squid",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Shucked clams, mussels, and oysters",
+    "Shelf_Days": 10
+  },
+  {
+    "Name": "Crab meat",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Crab legs",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Live clams, mussels, crab, and oysters",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Fresh whole lobster",
+    "Shelf_Days": 1
+  },
+  {
+    "Name": "Fresh lobster tails",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Fresh clams, mussels, oysters",
+    "Shelf_Days": 10
+  },
+  {
+    "Name": "Fresh whole lobster",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Herring",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Fish",
+    "Shelf_Days": 45
+  },
+  {
+    "Name": "Fish",
+    "Shelf_Days": 30
+  },
+  {
+    "Name": "Tofu",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Miso",
+    "Shelf_Days": 365
+  },
+  {
+    "Name": "Soy flour",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Commercial brand vacuum-packed dinners",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Hummus",
+    "Shelf_Days": 90
+  },
+  {
+    "Name": "Luncheon meat or poultry",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Main dishes or meals",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Olives",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Pate",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Luncheon meat or poultry",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Apples",
+    "Shelf_Days": 42
+  },
+  {
+    "Name": "Berries",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Berries",
+    "Shelf_Days": 6
+  },
+  {
+    "Name": "Blueberries",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Citrus fruit",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Coconuts",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Cranberries",
+    "Shelf_Days": 60
+  },
+  {
+    "Name": "Dates",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Grapes",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Melons",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Papaya, mango, feijoa, passionfruit, casaha melon",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Pomegranate",
+    "Shelf_Days": 90
+  },
+  {
+    "Name": "Artichokes, whole",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Asparagus",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Bamboo shoots",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Beans and peas",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Beets",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Bok choy",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Broccoli and broccoli raab (rapini)",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Brussels sprouts",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Cabbage",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Carrots, parsnips",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Cauliflower",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Celery",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Corn on the cob",
+    "Shelf_Days": 2
+  },
+  {
+    "Name": "Cucumbers",
+    "Shelf_Days": 6
+  },
+  {
+    "Name": "Eggplant",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Garlic",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Ginger root",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Greens",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Herbs",
+    "Shelf_Days": 10
+  },
+  {
+    "Name": "Leeks",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Lettuce",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Lettuce",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Mushrooms",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Okra",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Onions",
+    "Shelf_Days": 60
+  },
+  {
+    "Name": "Onions",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Peppers",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Potatoes",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Pumpkins",
+    "Shelf_Days": 150
+  },
+  {
+    "Name": "Radishes",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Rhubarb",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Rutabagas",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Squash",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Squash",
+    "Shelf_Days": 90
+  },
+  {
+    "Name": "Tamarind",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Taro",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Turnips",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Yuca/cassava",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Horseradish",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Pesto",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Kale",
+    "Shelf_Days": 5
+  },
+  {
+    "Name": "Turkey bacon",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Almonds ",
+    "Shelf_Days": 480
+  },
+  {
+    "Name": "Almonds ",
+    "Shelf_Days": 240
+  },
+  {
+    "Name": "Cashews",
+    "Shelf_Days": 180
+  },
+  {
+    "Name": "Macadamias",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Peanuts",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Pecans",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Pecans",
+    "Shelf_Days": 270
+  },
+  {
+    "Name": "Pistachios",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Walnuts",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Star fruit",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Prickly pear ",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Pitaya/dragon fruit",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Strawberries",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Raspberries",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Cherries",
+    "Shelf_Days": 3
+  },
+  {
+    "Name": "Peanut butter",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Ricotta",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Baby carrots",
+    "Shelf_Days": 28
+  },
+  {
+    "Name": "Jicama",
+    "Shelf_Days": 21
+  },
+  {
+    "Name": "Kimchi",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Kohlrabi",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Watermelon",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Cantaloupe",
+    "Shelf_Days": 15
+  },
+  {
+    "Name": "Honeydew",
+    "Shelf_Days": 4
+  },
+  {
+    "Name": "Relish",
+    "Shelf_Days": 270
+  },
+  {
+    "Name": "Tapenade",
+    "Shelf_Days": 270
+  },
+  {
+    "Name": "Flaxseed",
+    "Shelf_Days": 360
+  },
+  {
+    "Name": "Lemongrass",
+    "Shelf_Days": 9
+  },
+  {
+    "Name": "Turkey ",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Salami ",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Chicken",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Canadian bacon",
+    "Shelf_Days": 80
+  },
+  {
+    "Name": "Almond oil",
+    "Shelf_Days": 730
+  },
+  {
+    "Name": "String Cheese",
+    "Shelf_Days": 150
+  },
+  {
+    "Name": "Vegan Cheddar Cheese",
+    "Shelf_Days": 120
+  },
+  {
+    "Name": "Hot peppers",
+    "Shelf_Days": 7
+  },
+  {
+    "Name": "Bean sprouts",
+    "Shelf_Days": 10
+  },
+  {
+    "Name": "Swiss chard",
+    "Shelf_Days": 14
+  },
+  {
+    "Name": "Tortillas",
+    "Shelf_Days": 90
+  },
+  {
+    "Name": "Yuzu juice",
+    "Shelf_Days": 360
+  }
+]

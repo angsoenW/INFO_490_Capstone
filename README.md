@@ -23,6 +23,7 @@ Node.js installation
 5. Type "localhost:3000"
 
 ## Building and Deployment
+Expiration data from https://www.fsis.usda.gov/shared/data/EN/foodkeeper.json
 
 ![Alt text](Project%20Architecture%20Diagram.png/)
 

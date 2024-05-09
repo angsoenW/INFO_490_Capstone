@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var debug = require('debug')('express-starter:server');
+var debug = require('debug')('null');
 var http = require('http');
 
 (async () => {

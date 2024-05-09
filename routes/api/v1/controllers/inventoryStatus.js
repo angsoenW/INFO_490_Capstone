@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import express from 'express'
+import fetch from 'node-fetch';
 
 var router = express.Router()
 
@@ -28,18 +29,18 @@ router.post('/', async (req, res) => {
             })
         }
         if (req.query.ingredient !== "add") {
-            let inventory = await req.models.Inventory.findById({ _id: req.query.ingredient })
+            //let inventory = await req.models.Inventory.findById({ _id: req.query.ingredient })
+            let inventory = await req.models.Inventory.findOne({ username: req.session.account.username })
             const purchaseDate = req.body.purchaseDate
-            const ingredients = req.body.ingredient.split(',').map(ingredient => ingredient.trim());
+            const ingredient = req.body.ingredient
+            const shelfLifeDays = req.body.shelfLifeDays
             if (inventory) {
-                ingredients.forEach(async ingredient => {
-                    let newItem = await req.models.Item.create({
-                        ingredient,
-                        purchaseDate,
-                        shelfLifeDays: 10
-                    })
-                    inventory.contents.push(newItem)
-                });
+                let newItem = await req.models.Item.create({
+                    ingredient,
+                    purchaseDate,
+                    shelfLifeDays: shelfLifeDays
+                })
+                inventory.contents.push(newItem)
                 await inventory.save()
 
             } else {
