@@ -19,11 +19,11 @@ async function displayIngredients() {
         },
         {
             "name": "bell pepper",
-            "src": "./img/idk/bell_pepper.png"
+            "src": "./img/idk/bell pepper.png"
         },
         {
             "name": "bok choy",
-            "src": "./img/idk/bok_choy.png"
+            "src": "./img/idk/bok choy.png"
         },
         {
             "name": "broccoli",
@@ -99,11 +99,11 @@ async function displayIngredients() {
         },
         {
             "name": "white reddish",
-            "src": "./img/idk/white_reddish.png"
+            "src": "./img/idk/white reddish.png"
         },
         {
             "name": "butternut squash",
-            "src": "./img/idk/butternut_squash.png"
+            "src": "./img/idk/butternut squash.png"
         },
         {
             "name": "bacon",
@@ -115,15 +115,15 @@ async function displayIngredients() {
         },
         {
             "name": "beef rib",
-            "src": "./img/idk/beef_rib.png"
+            "src": "./img/idk/beef rib.png"
         },
         {
             "name": "beef sirloin",
-            "src": "./img/idk/beef_sirloin.png"
+            "src": "./img/idk/beef sirloin.png"
         },
         {
             "name": "beef steak",
-            "src": "./img/idk/Beef_steak.png"
+            "src": "./img/idk/Beef steak.png"
         },
         {
             "name": "chicken leg",
@@ -131,35 +131,35 @@ async function displayIngredients() {
         },
         {
             "name": "chicken breast",
-            "src": "./img/idk/chicken_breast.png"
+            "src": "./img/idk/chicken breast.png"
         },
         {
             "name": "chicken drum",
-            "src": "./img/idk/chicken_drum.png"
+            "src": "./img/idk/chicken drum.png"
         },
         {
             "name": "chicken thigh",
-            "src": "./img/idk/chicken_thigh.png"
+            "src": "./img/idk/chicken thigh.png"
         },
         {
             "name": "chicken wing",
-            "src": "./img/idk/chicken_wing.png"
+            "src": "./img/idk/chicken wing.png"
         },
         {
             "name": "ground beef",
-            "src": "./img/idk/ground_beef.png"
+            "src": "./img/idk/ground beef.png"
         },
         {
             "name": "ground pork",
-            "src": "./img/idk/ground_pork.png"
+            "src": "./img/idk/ground pork.png"
         },
         {
             "name": "lamb loin",
-            "src": "./img/idk/lamb_loin.png"
+            "src": "./img/idk/lamb loin.png"
         },
         {
             "name": "lamb shank",
-            "src": "./img/idk/lamb_shank.png"
+            "src": "./img/idk/lamb shank.png"
         },
         {
             "name": "oxtail",
@@ -171,11 +171,11 @@ async function displayIngredients() {
         },
         {
             "name": "pork brisket",
-            "src": "./img/idk/pork_brisket.png"
+            "src": "./img/idk/pork brisket.png"
         },
         {
             "name": "pork chop",
-            "src": "./img/idk/pork_chop.png"
+            "src": "./img/idk/pork chop.png"
         },
         {
             "name": "prosciutto",
@@ -183,7 +183,7 @@ async function displayIngredients() {
         },
         {
             "name": "pull pork",
-            "src": "./img/idk/pull_pork.png"
+            "src": "./img/idk/pull pork.png"
         },
         {
             "name": "salami",
@@ -195,15 +195,15 @@ async function displayIngredients() {
         },
         {
             "name": "apple",
-            "src": "./img/idk/apple-3d-illustration-icon-png.png"
+            "src": "./img/idk/apple.png"
         },
         {
             "name": "banana",
-            "src": "./img/idk/banana-fruit-3d-icon-png.png"
+            "src": "./img/idk/banana.png"
         },
         {
             "name": "cherry",
-            "src": "./img/idk/cherry-6430786-5299258.png"
+            "src": "./img/idk/cherry.png"
         },
         {
             "name": "coconut",
@@ -211,7 +211,7 @@ async function displayIngredients() {
         },
         {
             "name": "dragon fruit",
-            "src": "./img/idk/dragon_fruit.png"
+            "src": "./img/idk/dragon fruit.png"
         },
         {
             "name": "durian",
@@ -223,7 +223,7 @@ async function displayIngredients() {
         },
         {
             "name": "grapes",
-            "src": "./img/idk/Grapes-3d-icon.png"
+            "src": "./img/idk/grapes.png"
         },
         {
             "name": "guava",
@@ -255,7 +255,7 @@ async function displayIngredients() {
         },
         {
             "name": "orange",
-            "src": "./img/idk/orange-5843979-4889219.png"
+            "src": "./img/idk/orange.png"
         },
         {
             "name": "papaya",
@@ -271,7 +271,7 @@ async function displayIngredients() {
         },
         {
             "name": "pineapple",
-            "src": "./img/idk/pineapple-6323913-5210265.png"
+            "src": "./img/idk/pineapple.png"
         },
         {
             "name": "plum",
@@ -291,11 +291,11 @@ async function displayIngredients() {
         },
         {
             "name": "salt",
-            "src": "./img/idk/10606249.png"
+            "src": "./img/idk/salt.png"
         },
         {
             "name": "bay leaves",
-            "src": "./img/idk/bay_leaves.png"
+            "src": "./img/idk/bay leaves.png"
         },
         {
             "name": "blackpepper",
@@ -303,7 +303,7 @@ async function displayIngredients() {
         },
         {
             "name": "cinnamon powder",
-            "src": "./img/idk/cinnamon_powder.png"
+            "src": "./img/idk/cinnamon powder.png"
         },
         {
             "name": "cumin powder",
@@ -315,7 +315,7 @@ async function displayIngredients() {
         },
         {
             "name": "tumeric powder",
-            "src": "./img/idk/tumeric_powder.png"
+            "src": "./img/idk/tumeric powder.png"
         }
     ];
     try {
