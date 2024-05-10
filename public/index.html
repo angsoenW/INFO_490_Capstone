@@ -27,11 +27,15 @@
       <h1>What You Got Left</h1>
       <input id="search-ingredient-input" type="text" placeholder="Ingredients...">
       <button id="search-button">Search</button>
+      <div class="ingredients-container">
+        <div id="ingredients">
+      </div>
+      <button onclick="previewRecipe()">Let's cook!</button>
     </section>
 
     <section class="what-can-we-make">
       <h1>What Can We Make</h1>
-      <div class="recipes-container">
+      <div class="recipes-container" id="recipe_preview">
         <img src="./img/icons/Ellipse 42.png" alt="chef">
         <p>Select your ingredients</p>
         <p>and let's make something delicious...</p>

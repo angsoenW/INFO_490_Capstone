@@ -9,7 +9,7 @@ async function loadIdentity(){
         if(identityInfo.status == "loggedin"){
             myIdentity = identityInfo.userInfo.username;
             identity_div.innerHTML = `
-            <a href="/userPage.html?user=${encodeURIComponent(identityInfo.userInfo.username)}">${escapeHTML(identityInfo.userInfo.name)} (${escapeHTML(identityInfo.userInfo.username)})</a>
+            <a href="/userPage.html?user=${encodeURIComponent(identityInfo.userInfo.username)}">Saved Recipe</a>
             <a href="signout" id="logout">Log out</a>`;
         } else { //logged out
             myIdentity = undefined;

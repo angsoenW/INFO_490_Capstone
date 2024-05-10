@@ -1,5 +1,5 @@
 
-const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g, 
+const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g,
     tag => ({
         '&': '&amp;',
         '<': '&lt;',
@@ -8,28 +8,55 @@ const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g,
         '"': '&quot;'
     }[tag]));
 
+async function getContent() {
+    let inventory
+    let response = await fetch("api/v1/inventory", { method: 'GET' });
+    let data = await response.json();
+    if (data.length !== 0) {
+        for (let invent in data) {
+            invent = data[invent]
+            if (invent.contents) {
+                inventory = invent.contents
+            }
+        }
+    }
+    return inventory
+}
 
-async function fetchJSON(route, options){
+function getIngredient(inventory) {
+    //console.log(inventory)
+    let ingredientList = []
+    if (!inventory) {
+        return ingredientList
+    }
+    inventory.forEach(ingredient => {
+        ingredientList.push(ingredient.ingredient)
+    })
+    return ingredientList
+}
+
+
+async function fetchJSON(route, options) {
     let response
-    try{
+    try {
         response = await fetch(route, {
             method: options && options.method ? options.method : "GET",
             body: options && options.body ? JSON.stringify(options.body) : undefined,
-            headers: options && options.body ? {'Content-Type': 'application/json'}: undefined
+            headers: options && options.body ? { 'Content-Type': 'application/json' } : undefined
         })
-    }catch(error){
+    } catch (error) {
         displayError()
         throw new Error(
             `Error fetching ${route} with options: ${options ? JSON.stringify(options) : options}
              No response from server (failed to fetch)`)
     }
     let responseJson;
-    try{
+    try {
         responseJson = await response.json();
-    }catch(error){
-        try{
+    } catch (error) {
+        try {
             let responseText = await response.text();
-        }catch(getTextError){
+        } catch (getTextError) {
             displayError()
             throw new Error(
                 `Error fetching ${route} with options: ${options ? JSON.stringify(options) : options}
@@ -44,7 +71,7 @@ async function fetchJSON(route, options){
             Response wasn't json: ${responseText ? JSON.stringify(responseText) : responseText}
             error: ${getTextError}`)
     }
-    if(response.status < 200 || response.status >= 300 || responseJson.status == "error"){
+    if (response.status < 200 || response.status >= 300 || responseJson.status == "error") {
         displayError()
         throw new Error(
             `Error fetching ${route} with options: ${options ? JSON.stringify(options) : options}
@@ -54,12 +81,12 @@ async function fetchJSON(route, options){
     return responseJson
 }
 
-async function displayError(){
+async function displayError() {
     document.getElementById('errorInfo').innerText = 'Error: action failed (see console for more information)'
     document.getElementById('errorInfo').style.opacity = 1
     // pause 4 seconds
     await new Promise(resolve => setTimeout(resolve, 4 * 1000))
-    document.getElementById('errorInfo').innerText= ''
+    document.getElementById('errorInfo').innerText = ''
     document.getElementById('errorInfo').style.opacity = 0
 }
 

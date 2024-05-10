@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
           "src": "./img/icons/Veggie/leek.png"
         },
         {
-          "name": "leetuce",
-          "src": "./img/icons/Veggie/leetuce.png"
+          "name": "lettuce",
+          "src": "./img/icons/Veggie/lettuce.png"
         },
         {
           "name": "mushroom",
@@ -333,29 +333,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
-  async function getContent() {
-    let inventory
-    let response = await fetch("api/v1/inventory", { method: 'GET' });
-    let data = await response.json();
-    if (data.length !== 0) {
-      for (let invent in data) {
-        invent = data[invent]
-        if (invent.contents) {
-          inventory = invent.contents
-        }
-      }
-    }
-    return inventory
-  }
 
-  function getIngredient(inventory) {
-    console.log(inventory)
-    let ingredientList = []
-    inventory.forEach(ingredient => {
-      ingredientList.push(ingredient.ingredient)
-    })
-    return ingredientList
-  }
 
   function generateId(category, name) {
     return `${category.toLowerCase()}-${name.replace(/\s+/g, '-').toLowerCase()}`;
@@ -455,14 +433,23 @@ document.addEventListener('DOMContentLoaded', function () {
   loadIngredients();
 });
 
-function updateFridge() {
-  addIngredient(itemToAdd)
-  //removeIngredient(itemToRemove)
+async function init() {
+
+  await loadIdentity();
+  let identityInfo = await fetchJSON(`api/v1/users/myIdentity`)
+  //localStorage.removeItem('diet')
+  //localStorage.removeItem('intolerances')
+}
+
+async function updateFridge() {
+  await addIngredient(itemToAdd)
+  await removeIngredient(itemToRemove)
+  await location.reload()
 }
 
 async function addIngredient(itemToAdd) {
   // when new user is created, the page is set to undefined
-  console.log("adding" + itemToAdd)
+  //console.log("adding" + itemToAdd)
   // let ingredient = document.getElementById("ingredientsInput").value;
   for (let item in itemToAdd) {
     item = itemToAdd[item]
@@ -493,16 +480,13 @@ async function addIngredient(itemToAdd) {
 
     let status;
     try {
-      console.log("adding" + JSON.stringify(shelfLifeDays))
+      // console.log("adding" + JSON.stringify(shelfLifeDays))
       let data = {
         ingredient: item,
         purchaseDate: purchaseDate,
         shelfLifeDays: shelfLifeDays ? shelfLifeDays : 10
       };
-
-      console.log("adding" + data.purchaseDate)
-
-
+      
       let response = await fetch("api/v1/inventory?ingredient=" + identity, {
         method: "POST",
         body: JSON.stringify(data),
@@ -510,7 +494,6 @@ async function addIngredient(itemToAdd) {
           'Content-Type': 'application/json'
         }
       });
-
       status = response.status;
       if (response.status === 401) {
         document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
@@ -534,28 +517,28 @@ async function getExpirationPeriods(item) {
   return expirationPeriods.json();
 }
 
-async function removeIngredient(_id) {
-
-  if (_id === "") {
-    document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
-    return;
-  }
+async function removeIngredient(itemToRemove) {
+  //console.log("removing" + itemToAdd)
+  // if (_id === "") {
+  //   document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
+  //   return;
+  // }
   let status;
+  for (let item in itemToRemove) {
+    item = itemToRemove[item]
+   //console.log("removing" + item)
 
-  try {
-    let response = await fetch("api/v1/inventory?ingredient=" + _id, { method: 'DELETE' })
-    status = response.status;
-    if (response.status === 401) {
-      document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
-      return;
-    } else {
-      console.log(await response.json());
+    try {
+      let response = await fetch("api/v1/inventory?ingredient=" + item, { method: 'DELETE' })
+      status = response.status;
+      if (response.status === 401) {
+        document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
+        return;
+      } else {
+        //console.log(await response.json());
+      }
+    } catch (e) {
+      console.log(e.message)
     }
-  } catch (e) {
-    console.log(e.message)
   }
-
-  await displayIngredients()
-  showUpdateNotification(status);
-
 }

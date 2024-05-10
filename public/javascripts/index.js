@@ -1,111 +1,65 @@
-let ingredientsString = ""
+//let ingredientsString = ""
 async function init() {
-    
+
     await loadIdentity();
     let identityInfo = await fetchJSON(`api/v1/users/myIdentity`)
-    if (identityInfo.status == "loggedin"){
-        //await displayIngredients()
+    if (identityInfo.status == "loggedin") {
+        await displayIngredients()
     }
     //localStorage.removeItem('diet')
     //localStorage.removeItem('intolerances')
 }
 
-// async function addIngredient() {
-//     let ingredient = document.getElementById("ingredientsInput").value;
-//     let purchaseDate = document.getElementById("dateInput").value;
 
-//     if (ingredient === "") {
-//         document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
-//         return;
-//     }
-//     if (purchaseDate === "") {
-//         document.getElementById("dateInput").placeholder = "Invalid Date!";
-//         return;
-//     }
-
-//     let expirationPeriods = await getExpirationPeriods();
-//     let shelfLifeDays = expirationPeriods[ingredient];
-    
-//     let purchaseDateObj = new Date(purchaseDate);
-//     if (!shelfLifeDays) {
-//         console.error('Shelf life for the ingredient is not defined');
-//         return;
-//     }
-//     let expirationDate = new Date(purchaseDateObj.setDate(purchaseDateObj.getDate() + shelfLifeDays)).toISOString().split('T')[0];
-    
-//     let status;
-//     try {
-//         let response = await fetch("api/v1/inventory?ingredient=" + ingredient + expirationDate, {method: 'POST'})
-//         status = response.status;
-//         if (response.status === 401) {
-//             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
-//             document.getElementById("dateInput").placeholder = "You need to log in to perform this action.";
-//             return;
-//         } else {
-//             console.log(await response.json());
-//         }
-//     } catch(e) {
-//         console.log(e.message);
-//     }
-
-//     await displayIngredients();
-//     showUpdateNotification(status);
-// }
-
-async function removeIngredient(ingredient) {
-
-    if (ingredient === "") {
-        document.getElementById("ingredientsInput").placeholder = "Invalid Ingredient!";
-        return;
-    }
-    let status;
-
+async function displayIngredients() {
     try {
-        let response = await fetch("api/v1/inventory?ingredient=" + ingredient, {method: 'DELETE'})
-        status = response.status;
-        if (response.status === 401) {
-            document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
-            return;
-        } else {
-            console.log(await response.json());
-        }
-    } catch(e) {
-        console.log(e.message)
+        let inventory = getIngredient(await getContent())
+        console.log("1" + inventory)
+        let ingredientsList = inventory.map(ingredient => {
+            return `
+                <li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="flex-grow: 1; margin-right: 10px; color: black;">${ingredient}</span>
+                    <input type="checkbox" name="ingredient" value="${ingredient}" />
+                </li>
+            `;
+        }).join("");
+        console.log("2" + ingredientsList)
+        let ingredientsHTML = `
+            <h3 style="color: black;">Your Ingredient List:</h3>
+            <ul style="overflow-y: scroll; max-height: 200px;">
+            ${ingredientsList}
+            </ul>
+        `;
+        console.log("3" + ingredientsHTML)
+        document.getElementById("ingredients").innerHTML = ingredientsHTML;
+        // let response = await fetch("api/v1/inventory", {method: 'GET'});
+        // let data = await response.json();
+        // ingredientsString = data.contents.join(", ");
+        // let ingredientsList = data.contents;
+        // let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
+        // ingredientsList.forEach(ingredient => {
+        //     ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+        //     <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
+        //     <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
+        //     </li>`;
+        // });
+        // ingredientsHTML += "</ul>";
+        // document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
     }
-
-    await displayIngredients()
-    showUpdateNotification(status);
-
+    catch (e) {
+        document.getElementById("ingredients").innerHTML = `<p>Error: ${e.message}</p>`;
+    }
 }
-
-// async function displayIngredients() {
-//     try {
-//         let response = await fetch("api/v1/inventory", {method: 'GET'});
-//         let data = await response.json();
-//         ingredientsString = data.contents.join(", ");
-//         let ingredientsList = data.contents;
-//         let ingredientsHTML = "<h3>Your Ingredient List:</h3><ul>";
-//         ingredientsList.forEach(ingredient => {
-//             ingredientsHTML += `<li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-//             <span style="flex-grow: 1; margin-right: 10px;">${ingredient}</span>
-//             <button class="delete-btn" onclick="removeIngredient('${ingredient}')">Remove Ingredient</button>
-//             </li>`;
-//         });
-//         ingredientsHTML += "</ul>";
-//         document.getElementById("ingredient_preview").innerHTML = ingredientsHTML;
-//     }
-//     catch(e) {
-//         document.getElementById("ingredient_preview").innerHTML = `<p>Error: ${e.message}</p>`;
-//     }
-// }
 
 
 async function previewRecipe() {
     try {
-        let diet = localStorage.getItem('diet') || ''
-        let intolerances = localStorage.getItem('intolerances') || ''
-        
-        let preview = await fetch(`api/v1/generate?ingredientsList=${ingredientsString}&diet=${diet}&intolerances=${intolerances}`, {
+        //let diet = localStorage.getItem('diet') || ''
+        //let intolerances = localStorage.getItem('intolerances') || ''
+        let checkedIngredients = Array.from(document.querySelectorAll('input[name="ingredient"]:checked')).map(input => input.value);
+        ingredientsString = checkedIngredients.join(", ");
+        // let preview = await fetch(`api/v1/generate?ingredientsList=${ingredientsString}&diet=${diet}&intolerances=${intolerances}`, {
+        let preview = await fetch(`api/v1/generate?ingredientsList=${ingredientsString}`, {
             method: 'GET',
         })
         if (preview.status === 401) {
@@ -115,8 +69,9 @@ async function previewRecipe() {
             throw new Error('Network response was not ok.');
         }
         let previewJSON = await preview.json();
+        console.log("hmmmmm" + JSON.stringify(previewJSON));
         displayPreviews(previewJSON);
-    } catch(e) {
+    } catch (e) {
         displayPreviews({ error: `This is your error: ${e.message}` });
     }
 }
@@ -126,11 +81,11 @@ function displayPreviews(previewJSON) {
         document.getElementById("recipe_preview").innerHTML = `<p>${previewJSON.error}</p>`;
     } else if (previewJSON.results && previewJSON.results.length > 0) {
         let htmlContent = '<ul style="list-style-type:none;">';
-        previewJSON.results.forEach(function(recipe) {
+        previewJSON.results.forEach(function (recipe) {
             let missedIngredientsList = '';
             if (recipe.missedIngredients && recipe.missedIngredients.length > 0) {
                 missedIngredientsList += '<p>Missing Ingredients: ';
-                const ingredientNames = recipe.missedIngredients.map(function(ingredient) {
+                const ingredientNames = recipe.missedIngredients.map(function (ingredient) {
                     return ingredient.name;
                 });
                 missedIngredientsList += ingredientNames.join(', ') + '.</p>';
@@ -154,14 +109,14 @@ function displayPreviews(previewJSON) {
 async function addInstructions(recipeID, recipeTitle, recipeImage) {
     //just a placeholder for recipeID/ not sure whether we should call recipe handler get to get the ID or 
     try {
-        let response = await fetch(`api/v1/recipe?recipeID=${recipeID}&recipeTitle=${recipeTitle}&recipeImage=${recipeImage}`, {method: 'POST'})
+        let response = await fetch(`api/v1/recipe?recipeID=${recipeID}&recipeTitle=${recipeTitle}&recipeImage=${recipeImage}`, { method: 'POST' })
         if (response.status === 401) {
             document.getElementById("ingredientsInput").placeholder = "You need to log in to perform this action.";
             return;
         } else {
             console.log(await response.json());
         }
-    } catch(e) {
+    } catch (e) {
         console.log(e.message)
     }
 
@@ -185,7 +140,7 @@ function showUpdateNotification(status) {
 
     let ingredientPreview = document.getElementById("ingredient_preview");
     ingredientPreview.style.position = "relative";
-    
+
     ingredientPreview.appendChild(notification);
 
     setTimeout(() => {
