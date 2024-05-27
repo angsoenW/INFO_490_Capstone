@@ -37,6 +37,7 @@ const __dirname = dirname(__filename);
 
 var app = express();
 
+app.enable('trust proxy')
 
 app.use(logger('dev'));
 app.use(express.json());
